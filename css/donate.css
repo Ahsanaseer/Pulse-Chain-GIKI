@@ -4,6 +4,18 @@
     margin: 0 auto;
 }
 
+/* Remove spinner buttons from number input */
+#age::-webkit-inner-spin-button,
+#age::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#age {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield; /* Standard */
+}
+
 .donate-form {
     margin-top: 20px;
 }
@@ -19,45 +31,12 @@
 }
 
 /* Navigation Styles */
-.nav-bar {
-    background: var(--bg-card);
-    padding: 15px 30px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px var(--shadow);
-    border: 1px solid var(--border-color);
-}
 
-.nav-bar h2 {
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.nav-bar .nav-links {
-    display: flex;
-    gap: 15px;
-}
 
 @media (max-width: 768px) {
     .donate-container {
         padding: 0 10px;
     }
 
-    .nav-bar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-bar .nav-links {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nav-bar .nav-links .btn {
-        width: 100%;
-    }
 }
 

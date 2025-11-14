@@ -21,9 +21,6 @@
             <p>Donate Blood</p>
         </header>
 
-        <div class="nav-bar">
-            <h2>Donor Registration</h2>
-        </div>
 
         <div class="card" style="max-width: 700px; margin: 0 auto;">
             <div id="alertContainer"></div>
@@ -75,11 +72,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="department">Department *</label>
-                    <input type="text" id="department" name="department" placeholder="e.g., Computer Science, Engineering" required>
-                </div>
-
-                <div class="form-group">
                     <label for="availability">Donor Availability *</label>
                     <select id="availability" name="availability" required>
                         <option value="">Select Availability</option>
@@ -104,7 +96,7 @@
 
     <script type="module">
         import { addDonor } from './js/donor.js';
-        import { getCurrentUser, onAuthStateChange } from './js/auth.js';
+        import { getCurrentUser, onAuthStateChange } from './js/login.js';
 
         const donateForm = document.getElementById('donateForm');
         const alertContainer = document.getElementById('alertContainer');
@@ -134,15 +126,17 @@
         donateForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            const user = getCurrentUser();
             const formData = {
                 fullName: document.getElementById('fullName').value,
                 age: parseInt(document.getElementById('age').value),
                 gender: document.getElementById('gender').value,
                 bloodGroup: document.getElementById('bloodGroup').value,
                 contact: document.getElementById('contact').value,
-                department: document.getElementById('department').value,
                 availability: document.getElementById('availability').value,
-                medicalNote: document.getElementById('medicalNote').value
+                medicalNote: document.getElementById('medicalNote').value,
+                userEmail: user ? user.email : '',
+                userId: user ? user.uid : ''
             };
 
             const result = await addDonor(formData);

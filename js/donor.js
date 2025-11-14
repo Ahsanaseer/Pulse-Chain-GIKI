@@ -13,9 +13,10 @@ export async function addDonor(donorData) {
             gender: donorData.gender,
             bloodGroup: donorData.bloodGroup,
             contact: donorData.contact,
-            department: donorData.department,
             availability: donorData.availability,
             medicalNote: donorData.medicalNote || '',
+            userEmail: donorData.userEmail || '', // Store user's email to identify their donations
+            userId: donorData.userId || '', // Store user's UID as backup identifier
             timestamp: new Date().toISOString()
         });
         return { success: true, id: docRef.id };
@@ -82,6 +83,28 @@ export async function updateDonorAvailability(donorId, availability) {
             availability: availability
         });
         return { success: true };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}
+
+/**
+ * Get donations for a specific user by email
+ */
+export async function getUserDonations(userEmail) {
+    try {
+        const q = query(
+            collection(db, 'allDonors'),
+            where('userEmail', '==', userEmail)
+        );
+        const querySnapshot = await getDocs(q);
+        const donations = [];
+        querySnapshot.forEach((doc) => {
+            donations.push({ id: doc.id, ...doc.data() });
+        });
+        // Sort by timestamp descending (most recent first)
+        donations.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        return { success: true, donations: donations };
     } catch (error) {
         return { success: false, error: error.message };
     }

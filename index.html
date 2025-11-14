@@ -203,7 +203,7 @@
                             <button class="tab-button">Requests</button>
                         </div>
                     </div>
-                    <div style="padding: 40px; text-align: center; color: var(--text-secondary);">
+                    <div id="recentActivityContainer" style="padding: 40px; text-align: center; color: var(--text-secondary);">
                         <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
@@ -216,6 +216,54 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Profile</h2>
+                <button class="modal-close" id="closeProfileModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-content">
+                    <div class="profile-avatar-section">
+                        <div class="profile-avatar-large" id="profileAvatarLarge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h3 id="profileName">User</h3>
+                        <p id="profileEmail" class="profile-email">user@example.com</p>
+                    </div>
+                    
+                    <div class="profile-info-section">
+                        <div class="profile-info-item">
+                            <label>Full Name</label>
+                            <div class="profile-info-value" id="profileDisplayName">-</div>
+                        </div>
+                        <div class="profile-info-item">
+                            <label>Email</label>
+                            <div class="profile-info-value" id="profileEmailValue">-</div>
+                        </div>
+                        <div class="profile-info-item">
+                            <label>Role</label>
+                            <div class="profile-info-value">User</div>
+                        </div>
+                        <div class="profile-info-item">
+                            <label>Member Since</label>
+                            <div class="profile-info-value" id="profileMemberSince">-</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-primary btn-block" id="editProfileBtn">Edit Profile</button>
+                        <button class="btn btn-secondary btn-block" id="profileLogoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Login Modal -->
@@ -278,7 +326,8 @@
     </button>
 
     <script type="module">
-        import { getCurrentUser, logOut, onAuthStateChange, signIn } from './js/auth.js';
+        import { getCurrentUser, logOut, onAuthStateChange, signIn } from './js/login.js';
+        import { getUserDonations } from './js/donor.js';
 
         const userNameSpan = document.getElementById('userName');
         const userRole = document.getElementById('userRole');
@@ -333,10 +382,77 @@
             }
         });
 
-        // Open modal when clicking profile
-        userProfile.addEventListener('click', () => {
+        // Open profile modal when clicking profile
+        const profileModal = document.getElementById('profileModal');
+        const closeProfileModal = document.getElementById('closeProfileModal');
+        const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+        
+        // Function to open profile modal
+        function openProfileModal() {
             if (!isLoggedIn) {
-                loginModal.style.display = 'flex';
+                window.location.href = 'login.html';
+            } else {
+                // Update profile modal with current user data
+                const user = getCurrentUser();
+                if (user) {
+                    document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+                    document.getElementById('profileEmail').textContent = user.email || '-';
+                    document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+                    document.getElementById('profileEmailValue').textContent = user.email || '-';
+                    
+                    // Set avatar
+                    const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+                    if (user.displayName) {
+                        profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+                    } else {
+                        profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+                    }
+                    
+                    // Set member since date
+                    if (user.metadata && user.metadata.creationTime) {
+                        const createdDate = new Date(user.metadata.creationTime);
+                        document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+                    } else {
+                        document.getElementById('profileMemberSince').textContent = '-';
+                    }
+                }
+                profileModal.style.display = 'flex';
+            }
+        }
+        
+        // Open profile modal when clicking profile section
+        userProfile.addEventListener('click', openProfileModal);
+        
+        // Open profile modal when clicking profile menu item
+        const profileMenuItem = document.querySelector('.menu-item[data-page="profile"]');
+        if (profileMenuItem) {
+            profileMenuItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProfileModal();
+            });
+        }
+
+        // Close profile modal
+        closeProfileModal.addEventListener('click', () => {
+            profileModal.style.display = 'none';
+        });
+
+        // Close profile modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                profileModal.style.display = 'none';
+            }
+        });
+
+        // Logout from profile modal
+        profileLogoutBtn.addEventListener('click', async () => {
+            const result = await logOut();
+            if (result.success) {
+                sessionStorage.removeItem('adminLoggedIn');
+                sessionStorage.removeItem('adminEmail');
+                profileModal.style.display = 'none';
+                showAlert('Logged out successfully!', 'success');
+                // UI will update via onAuthStateChange
             }
         });
 
@@ -345,7 +461,7 @@
             loginModal.style.display = 'none';
         });
 
-        // Close modal when clicking outside
+        // Close login modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === loginModal) {
                 loginModal.style.display = 'none';
@@ -412,6 +528,67 @@
             }
         });
 
+        // Function to load and display recent activity
+        async function loadRecentActivity(userEmail) {
+            const activityContainer = document.getElementById('recentActivityContainer');
+            if (!activityContainer) return;
+
+            try {
+                const result = await getUserDonations(userEmail);
+                
+                if (result.success && result.donations && result.donations.length > 0) {
+                    // Display donations
+                    let html = '<div style="display: flex; flex-direction: column; gap: 16px; text-align: left;">';
+                    
+                    result.donations.slice(0, 5).forEach(donation => {
+                        const date = new Date(donation.timestamp);
+                        const formattedDate = date.toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'short', 
+                            day: 'numeric' 
+                        });
+                        
+                        html += `
+                            <div style="background: var(--card-bg); border-radius: 0.5rem; display: flex; justify-content: space-between; align-items: left;">
+                                <div style="flex: 1; text-align: left;">
+                                    <div style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">${donation.fullName}</div>
+                                    <div style="font-size: 14px; color: var(--text-secondary);">
+                                        Blood Group: <span style="color: var(--text-primary);">${donation.bloodGroup}</span>  
+                                        Availability: <span style="color: ${donation.availability === 'Yes' ? '#28a745' : '#dc3545'}">${donation.availability}</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; opacity: 0.7;">${formattedDate}</div>
+                                </div>
+                                <div style="margin-left: 16px; color: var(--accent-purple);">
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+                    activityContainer.innerHTML = html;
+                    activityContainer.style.textAlign = 'left';
+                    activityContainer.style.padding = '20px';
+                } else {
+                    // No donations found
+                    activityContainer.innerHTML = `
+                        <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 16px;">No recent activity</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Start by donating blood or making a request</div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+                activityContainer.innerHTML = `
+                    <div style="font-size: 14px; color: var(--text-secondary);">Unable to load recent activity</div>
+                `;
+            }
+        }
+
         // Check auth state
         onAuthStateChange(async (user) => {
             // Wait a moment to ensure Firebase has fully initialized
@@ -424,7 +601,7 @@
                 
                 // Update profile section - show name instead of email
                 userNameSpan.textContent = displayName;
-                userRole.textContent = 'Donor';
+                userRole.textContent = 'User';
                 
                 // Update hero title with greeting
                 if (user.displayName) {
@@ -441,9 +618,29 @@
                 
                 logoutBtn.style.display = 'block';
                 userProfile.style.cursor = 'default';
+                
+                // Load recent activity for logged-in user
+                if (user.email) {
+                    loadRecentActivity(user.email);
+                }
             } else {
                 // No user - ensure logged-out state
                 initializeLoggedOutState();
+                
+                // Reset recent activity
+                const activityContainer = document.getElementById('recentActivityContainer');
+                if (activityContainer) {
+                    activityContainer.innerHTML = `
+                        <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 16px;">No recent activity</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Start by donating blood or making a request</div>
+                    `;
+                }
             }
         });
 
@@ -457,6 +654,24 @@
                 // UI will update via onAuthStateChange
             }
         });
+
+        // Top header background on scroll
+        const topHeader = document.querySelector('.top-header');
+        if (topHeader) {
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 50) {
+                    topHeader.classList.add('scrolled');
+                } else {
+                    topHeader.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
     </script>
 </body>
 </html>

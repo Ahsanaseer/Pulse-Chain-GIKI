@@ -5,16 +5,47 @@
     box-sizing: border-box;
 }
 
+/* Hide scrollbars but keep scrolling functionality */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
 :root {
+    /* Background Colors */
     --bg-primary: #000000;
     --bg-secondary: #0a0a0a;
     --bg-card: #111111;
+    --main-bg: #000000;
+    --sidebar-bg: #000000;
+    --sidebar-hover: #0a0a0a;
+    --sidebar-active: #111111;
+    --card-bg: #111111;
+    
+    /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
+    
+    /* Border Colors */
+    --border-color: #333333;
+    --card-border: #333333;
+    
+    /* Accent Colors */
     --accent-blue: #ffffff;
     --accent-dark-blue: #e0e0e0;
     --accent-light-blue: #ffffff;
-    --border-color: #333333;
+    --accent-purple: #ffffff;
+    --accent-pink: #ffffff;
+    
+    /* Gradients (now solid colors) */
+    --gradient-purple: #ffffff;
+    --gradient-blue: #ffffff;
+    
+    /* Shadows */
     --shadow: rgba(0, 0, 0, 0.3);
 }
 
@@ -38,7 +69,7 @@ body .container {
 /* Card Styles */
 .card {
     background: var(--bg-card);
-    border-radius: 2px;
+    border-radius: 0.5rem;
     padding: 20px;
     box-shadow: 0 2px 8px var(--shadow);
     margin-bottom: 16px;
@@ -82,7 +113,7 @@ header p {
     padding: 10px;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 2px;
+    border-radius: 0.5rem;
     font-size: 14px;
     color: var(--text-primary);
 }
@@ -108,7 +139,7 @@ header p {
 .btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 2px;
+    border-radius: 0.5rem;
     font-size: 14px;
     cursor: pointer;
     text-decoration: none;
@@ -150,7 +181,7 @@ header p {
     background: #ffffff;
     color: #000000;
     text-decoration: none;
-    border-radius: 2px;
+    border-radius: 0.5rem;
     font-weight: 400;
     border: none;
     cursor: pointer;
@@ -212,7 +243,7 @@ select option {
 /* Alert/Toast Styles */
 .alert {
     padding: 12px;
-    border-radius: 2px;
+    border-radius: 0.5rem;
     margin-bottom: 16px;
     display: none;
 }

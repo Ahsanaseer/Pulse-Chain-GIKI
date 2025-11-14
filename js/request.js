@@ -49,3 +49,19 @@ export async function deleteRequest(requestId) {
     }
 }
 
+/**
+ * Create a blood request in allRequests collection
+ */
+export async function createBloodRequest(userEmail, requestBlood) {
+    try {
+        const docRef = await addDoc(collection(db, 'allRequests'), {
+            userEmail: userEmail,
+            requestBlood: requestBlood,
+            timestamp: new Date().toISOString()
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}
+

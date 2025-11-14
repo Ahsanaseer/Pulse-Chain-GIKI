@@ -65,15 +65,6 @@
                     </span>
                     <span class="menu-text">Analytics</span>
                 </a>
-                <a href="#" class="menu-item" data-page="settings">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243m-4.242 0L5.636 17.364m12.728 0l-4.243-4.243m-4.242 0L5.636 6.636"/>
-                        </svg>
-                    </span>
-                    <span class="menu-text">Settings</span>
-                </a>
             </nav>
             
             <div class="user-profile-section">
@@ -219,7 +210,7 @@
 
     <script type="module">
         import { getAdminData, adminDeleteDonor, adminDeleteRequest, adminUpdateDonorAvailability } from './js/admin.js';
-        import { getCurrentUser, logOut, onAuthStateChange, isAdmin } from './js/auth.js';
+        import { getCurrentUser, logOut, onAuthStateChange, isAdmin } from './js/login.js';
 
         const donorsContainer = document.getElementById('donorsContainer');
         const requestsContainer = document.getElementById('requestsContainer');
@@ -316,7 +307,6 @@
                         <th>Gender</th>
                         <th>Blood Group</th>
                         <th>Contact</th>
-                        <th>Department</th>
                         <th>Availability</th>
                         <th>Actions</th>
                     </tr>
@@ -331,7 +321,6 @@
                         <td>${donor.gender}</td>
                         <td><span class="badge badge-danger">${donor.bloodGroup}</span></td>
                         <td>${donor.contact}</td>
-                        <td>${donor.department}</td>
                         <td>
                             <select class="select-input availability-select" data-id="${donor.id}">
                                 <option value="Yes" ${donor.availability === 'Yes' ? 'selected' : ''}>Yes</option>
@@ -464,6 +453,20 @@
                 window.location.href = 'index.html';
             }
         });
+
+        // Top header background on scroll
+        const topHeader = document.querySelector('.top-header');
+        if (topHeader) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 50) {
+                    topHeader.classList.add('scrolled');
+                } else {
+                    topHeader.classList.remove('scrolled');
+                }
+            });
+        }
     </script>
 </body>
 </html>

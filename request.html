@@ -65,7 +65,8 @@
 
     <script type="module">
         import { getAllDonors, getFilteredDonors } from './js/donor.js';
-        import { onAuthStateChange } from './js/auth.js';
+        import { onAuthStateChange, getCurrentUser } from './js/login.js';
+        import { createBloodRequest } from './js/request.js';
 
         const searchBtn = document.getElementById('searchBtn');
         const donorsContainer = document.getElementById('donorsContainer');
@@ -113,9 +114,9 @@
                                 <th>Gender</th>
                                 <th>Blood Group</th>
                                 <th>Contact</th>
-                                <th>Department</th>
                                 <th>Availability</th>
                                 <th>Medical Note</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,9 +130,14 @@
                         <td>${donor.gender}</td>
                         <td><strong>${donor.bloodGroup}</strong></td>
                         <td>${donor.contact}</td>
-                        <td>${donor.department}</td>
                         <td><span style="color: ${donor.availability === 'Yes' ? '#28a745' : '#dc3545'}">${donor.availability}</span></td>
                         <td>${donor.medicalNote || '-'}</td>
+                        <td>
+                            ${donor.availability === 'Yes' ? 
+                                `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>` 
+                                : '<span style="color: var(--text-secondary);">-</span>'
+                            }
+                        </td>
                     </tr>
                 `;
             });
@@ -143,6 +149,37 @@
             `;
 
             donorsContainer.innerHTML = html;
+            
+            // Add event listeners to request blood buttons
+            const requestButtons = donorsContainer.querySelectorAll('.request-blood-btn');
+            requestButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const bloodGroup = button.getAttribute('data-blood-group');
+                    const user = getCurrentUser();
+                    
+                    if (!user || !user.email) {
+                        showAlert('Please log in to request blood.', 'error');
+                        return;
+                    }
+                    
+                    // Disable button to prevent multiple clicks
+                    button.disabled = true;
+                    button.textContent = 'Requesting...';
+                    
+                    const result = await createBloodRequest(user.email, bloodGroup);
+                    
+                    if (result.success) {
+                        showAlert(`Blood request for ${bloodGroup} submitted successfully!`, 'success');
+                        button.textContent = 'Requested';
+                        button.disabled = true;
+                        button.style.opacity = '0.6';
+                    } else {
+                        showAlert('Failed to submit request. Please try again.', 'error');
+                        button.disabled = false;
+                        button.textContent = 'Request Blood';
+                    }
+                });
+            });
         }
 
         searchBtn.addEventListener('click', async () => {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Blood Donation System</title>
+    <title>User Dashboard - Campus Blood Donation System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="logo-text">BloodSys</div>
             </div>
-
+            
             <nav class="sidebar-menu">
                 <a href="#" class="menu-item active" data-page="dashboard">
                     <span class="menu-icon">
@@ -76,15 +76,10 @@
             
             <div class="user-profile-section">
                 <div class="user-profile" id="userProfile">
-                    <div class="user-avatar" id="userAvatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
-                        <div class="user-name" id="userName">Login</div>
-                        <div class="user-role" id="userRole">Click to sign in</div>
+                        <div class="user-name" id="userName">User</div>
+                        <div class="user-role">Donor</div>
                     </div>
                 </div>
             </div>
@@ -102,20 +97,12 @@
                         </svg>
                         <input type="text" placeholder="Search donors, requests...">
                     </div>
-                    <button class="logout-icon-btn" id="logoutBtn" style="display: none;" title="Logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                    </button>
+                    <button class="btn-connect" id="logoutBtn" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">Logout</button>
                 </div>
             </header>
 
             <!-- Content Area -->
             <div class="content-area">
-                <div id="alertContainer" class="alert-container"></div>
-
                 <!-- Stats Cards -->
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -138,7 +125,7 @@
                 <!-- Hero Card -->
                 <div class="hero-card">
                     <div class="hero-label">BLOOD DONATION SYSTEM</div>
-                    <h2 class="hero-title" id="heroTitle">Your Gateway to Saving Lives</h2>
+                    <h2 class="hero-title">Your Gateway to Saving Lives</h2>
                     <p class="hero-description">Join our community of donors and help save lives. Every donation makes a difference. Register as a donor or request blood when needed.</p>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <a href="donate.html" class="hero-button" style="text-decoration: none; display: inline-block;">Register as Donor</a>
@@ -218,56 +205,6 @@
         </main>
     </div>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sign In</h2>
-                <button class="modal-close" id="closeModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="modalAlertContainer"></div>
-                <form id="loginForm" class="login-form-modal">
-                <div class="form-group">
-                        <label for="modalEmail">Email</label>
-                        <input type="email" id="modalEmail" name="email" required placeholder="Enter your email">
-                </div>
-
-                <div class="form-group password-group">
-                        <label for="modalPassword">Password</label>
-                    <div class="password-input-wrapper">
-                            <input type="password" id="modalPassword" name="password" required placeholder="Enter your password">
-                            <button type="button" class="password-toggle" id="modalPasswordToggle" aria-label="Toggle password visibility">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-off-icon" style="display: none;">
-                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                                <line x1="1" y1="1" x2="23" y2="23"></line>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-options">
-                    <label class="remember-me">
-                            <input type="checkbox" id="modalRememberMe" name="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block sign-in-btn">Sign In</button>
-            </form>
-
-            <div class="login-footer">
-                <p>Don't have an account? <a href="signup.html">Create one</a></p>
-            </div>
-        </div>
-    </div>
-    </div>
-
     <!-- Mobile Menu Toggle -->
     <button class="mobile-menu-toggle" id="mobileMenuToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -278,185 +215,21 @@
     </button>
 
     <script type="module">
-        import { getCurrentUser, logOut, onAuthStateChange, signIn } from './js/auth.js';
+        import { getCurrentUser, logOut, onAuthStateChange } from './js/auth.js';
 
         const userNameSpan = document.getElementById('userName');
-        const userRole = document.getElementById('userRole');
         const userAvatar = document.getElementById('userAvatar');
-        const userProfile = document.getElementById('userProfile');
         const logoutBtn = document.getElementById('logoutBtn');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const sidebar = document.getElementById('sidebar');
-        const loginModal = document.getElementById('loginModal');
-        const closeModal = document.getElementById('closeModal');
-        const loginForm = document.getElementById('loginForm');
-        const modalAlertContainer = document.getElementById('modalAlertContainer');
-        const modalPasswordToggle = document.getElementById('modalPasswordToggle');
-        const modalPasswordInput = document.getElementById('modalPassword');
-        const heroTitle = document.getElementById('heroTitle');
-
-        let isLoggedIn = false;
-
-        // Initialize UI to logged-out state
-        function initializeLoggedOutState() {
-            isLoggedIn = false;
-            userNameSpan.textContent = 'Login';
-            userRole.textContent = 'Click to sign in';
-            heroTitle.textContent = 'Your Gateway to Saving Lives';
-            userAvatar.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
-            logoutBtn.style.display = 'none';
-            userProfile.style.cursor = 'pointer';
-        }
-
-        // Initialize with logged-out state first
-        initializeLoggedOutState();
 
         // Mobile menu toggle
         mobileMenuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
         });
 
-        // Password visibility toggle
-        modalPasswordToggle.addEventListener('click', () => {
-            const type = modalPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            modalPasswordInput.setAttribute('type', type);
-            
-            const eyeIcon = modalPasswordToggle.querySelector('.eye-icon');
-            const eyeOffIcon = modalPasswordToggle.querySelector('.eye-off-icon');
-            
-            if (type === 'password') {
-                eyeIcon.style.display = 'block';
-                eyeOffIcon.style.display = 'none';
-            } else {
-                eyeIcon.style.display = 'none';
-                eyeOffIcon.style.display = 'block';
-            }
-        });
-
-        // Open modal when clicking profile
-        userProfile.addEventListener('click', () => {
-            if (!isLoggedIn) {
-                loginModal.style.display = 'flex';
-            }
-        });
-
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-
-        function showAlert(message, type = 'success', container = alertContainer) {
-            container.innerHTML = `
-                <div class="alert alert-${type} show">
-                    ${message}
-                </div>
-            `;
-            setTimeout(() => {
-                const alert = container.querySelector('.alert');
-                if (alert) {
-                    alert.classList.remove('show');
-                    setTimeout(() => container.innerHTML = '', 300);
-                }
-            }, 3000);
-        }
-
-        // Login form submission
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const email = document.getElementById('modalEmail').value;
-            const password = document.getElementById('modalPassword').value;
-
-            // Check admin credentials first
-            if (email === 'admin@gmail.com' && password === 'admin123@') {
-                sessionStorage.setItem('adminLoggedIn', 'true');
-                sessionStorage.setItem('adminEmail', email);
-                
-                showAlert('Admin login successful! Redirecting...', 'success', modalAlertContainer);
-                setTimeout(() => {
-                    window.location.href = 'admin-dashboard.html?admin=true';
-                }, 1000);
-                return;
-            }
-
-            // Regular user login with Firebase
-            const result = await signIn(email, password);
-
-            if (result.success) {
-                showAlert('Login successful!', 'success', modalAlertContainer);
-                loginModal.style.display = 'none';
-                // Update UI will happen via onAuthStateChange
-            } else {
-                let errorMessage = 'Login Failed! Please Check Your Credentials.';
-                
-                if (result.error && result.error.includes('auth/invalid-credential')) {
-                    errorMessage = 'Email Not Found! Please Sign Up';
-                } else if (result.error && result.error.includes('auth/user-not-found')) {
-                    errorMessage = 'Email Not Found! Please Sign Up';
-                } else if (result.error && result.error.includes('auth/wrong-password')) {
-                    errorMessage = 'Incorrect Password! Please Try Again.';
-                } else if (result.error && result.error.includes('auth/invalid-email')) {
-                    errorMessage = 'Invalid Email Format! Please Check Your Email.';
-                } else if (result.error) {
-                    errorMessage = result.error;
-                }
-                
-                showAlert(errorMessage, 'error', modalAlertContainer);
-            }
-        });
-
-        // Check auth state
-        onAuthStateChange(async (user) => {
-            // Wait a moment to ensure Firebase has fully initialized
-            await new Promise(resolve => setTimeout(resolve, 100));
-            
-            if (user) {
-                isLoggedIn = true;
-                const displayName = user.displayName || user.email || 'User';
-                const firstName = displayName.split(' ')[0]; // Get first name for greeting
-                
-                // Update profile section - show name instead of email
-                userNameSpan.textContent = displayName;
-                userRole.textContent = 'Donor';
-                
-                // Update hero title with greeting
-                if (user.displayName) {
-                    heroTitle.textContent = `Hello, ${firstName}`;
-                } else {
-                    heroTitle.textContent = 'Your Gateway to Saving Lives';
-                }
-                
-                if (displayName && displayName !== 'User') {
-                    userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
-                } else {
-                    userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
-                }
-                
-                logoutBtn.style.display = 'block';
-                userProfile.style.cursor = 'default';
-            } else {
-                // No user - ensure logged-out state
-                initializeLoggedOutState();
-            }
-        });
-
-        // Logout
-        logoutBtn.addEventListener('click', async () => {
-            const result = await logOut();
-            if (result.success) {
-                sessionStorage.removeItem('adminLoggedIn');
-                sessionStorage.removeItem('adminEmail');
-                showAlert('Logged out successfully!', 'success');
-                // UI will update via onAuthStateChange
-            }
-        });
+        // Redirect to main landing page (index.html)
+        window.location.href = 'index.html';
     </script>
 </body>
 </html>

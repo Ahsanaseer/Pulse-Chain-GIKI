@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Campus Blood Donation System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                        <path d="M12 2.69v18.62"/>
+                        <path d="M8 8h8"/>
+                    </svg>
+                </div>
+                <div class="logo-text">BloodSys</div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-page="dashboard">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </span>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+                <a href="#" class="menu-item" data-page="donors">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </span>
+                    <span class="menu-text">Donors</span>
+                </a>
+                <a href="#" class="menu-item" data-page="requests">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        </svg>
+                    </span>
+                    <span class="menu-text">Requests</span>
+                </a>
+                <a href="#" class="menu-item" data-page="analytics">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </span>
+                    <span class="menu-text">Analytics</span>
+                </a>
+                <a href="#" class="menu-item" data-page="settings">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243m-4.242 0L5.636 17.364m12.728 0l-4.243-4.243m-4.242 0L5.636 6.636"/>
+                        </svg>
+                    </span>
+                    <span class="menu-text">Settings</span>
+                </a>
+            </nav>
+            
+            <div class="user-profile-section">
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name">Admin</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <h1 class="header-title">Admin Dashboard</h1>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input type="text" placeholder="Search donors, requests..." id="searchInput">
+                    </div>
+                    <button class="btn-connect" id="refreshBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                            <polyline points="23 4 23 10 17 10"/>
+                            <polyline points="1 20 1 14 7 14"/>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                        </svg>
+                        Refresh
+                    </button>
+                    <button class="logout-icon-btn" id="logoutBtn" title="Logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div id="alertContainer" class="alert-container"></div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Donors</div>
+                        <div class="stat-value" id="totalDonors">0</div>
+                        <div class="stat-change">All registered donors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Active Requests</div>
+                        <div class="stat-value" id="totalRequests">0</div>
+                        <div class="stat-change">Pending blood requests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Available Donors</div>
+                        <div class="stat-value" id="availableDonors">0</div>
+                        <div class="stat-change">Ready to donate</div>
+                    </div>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <div class="hero-label">BLOOD DONATION SYSTEM</div>
+                    <h2 class="hero-title">Save Lives, Donate Blood</h2>
+                    <p class="hero-description">Manage donors, track requests, and ensure timely blood availability across campus. Every donation counts in saving lives.</p>
+                    <button class="hero-button" onclick="document.getElementById('refreshBtn').click()">Refresh Data</button>
+                </div>
+
+                <!-- Donors Section -->
+                <div class="data-section">
+                    <div class="section-header">
+                        <h2 class="section-title">All Donors</h2>
+                        <div class="section-tabs">
+                            <button class="tab-button active" data-filter="all">All</button>
+                            <button class="tab-button" data-filter="available">Available</button>
+                            <button class="tab-button" data-filter="unavailable">Unavailable</button>
+                        </div>
+                    </div>
+                    <div id="donorsContainer">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="2" x2="12" y2="6"/>
+                                    <line x1="12" y1="18" x2="12" y2="22"/>
+                                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                                    <line x1="2" y1="12" x2="6" y2="12"/>
+                                    <line x1="18" y1="12" x2="22" y2="12"/>
+                                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                                </svg>
+                            </div>
+                            <div class="empty-state-text">Loading donors...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requests Section -->
+                <div class="data-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Blood Requests</h2>
+                        <div class="section-tabs">
+                            <button class="tab-button active" data-filter="all-requests">All</button>
+                            <button class="tab-button" data-filter="recent">Recent</button>
+                        </div>
+                    </div>
+                    <div id="requestsContainer">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="2" x2="12" y2="6"/>
+                                    <line x1="12" y1="18" x2="12" y2="22"/>
+                                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                                    <line x1="2" y1="12" x2="6" y2="12"/>
+                                    <line x1="18" y1="12" x2="22" y2="12"/>
+                                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                                </svg>
+                            </div>
+                            <div class="empty-state-text">Loading requests...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+    </button>
+
+    <script type="module">
+        import { getAdminData, adminDeleteDonor, adminDeleteRequest, adminUpdateDonorAvailability } from './js/admin.js';
+        import { getCurrentUser, logOut, onAuthStateChange, isAdmin } from './js/auth.js';
+
+        const donorsContainer = document.getElementById('donorsContainer');
+        const requestsContainer = document.getElementById('requestsContainer');
+        const alertContainer = document.getElementById('alertContainer');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const searchInput = document.getElementById('searchInput');
+
+        // Mobile menu toggle
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Check admin access
+        const adminSession = sessionStorage.getItem('adminLoggedIn');
+        const adminEmail = sessionStorage.getItem('adminEmail');
+        
+        if (adminSession === 'true' && adminEmail === 'admin@gmail.com') {
+            loadData();
+        } else {
+            onAuthStateChange(async (user) => {
+                if (!user) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get('admin') === 'true') {
+                        sessionStorage.setItem('adminLoggedIn', 'true');
+                        sessionStorage.setItem('adminEmail', 'admin@gmail.com');
+                        loadData();
+                        return;
+                    }
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                const adminStatus = await isAdmin();
+                if (!adminStatus && user.email !== 'admin@gmail.com') {
+                    alert('Access denied. Admin privileges required.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                loadData();
+            });
+        }
+
+        function showAlert(message, type = 'success') {
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type} show">
+                    ${message}
+                </div>
+            `;
+            setTimeout(() => {
+                const alert = alertContainer.querySelector('.alert');
+                if (alert) {
+                    alert.classList.remove('show');
+                    setTimeout(() => alertContainer.innerHTML = '', 300);
+                }
+            }, 3000);
+        }
+
+        async function loadData() {
+            const result = await getAdminData();
+
+            if (result.success) {
+                updateStats(result.donors, result.requests);
+                displayDonors(result.donors);
+                displayRequests(result.requests);
+            } else {
+                showAlert('Failed to load data. Please try again.', 'error');
+                donorsContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="empty-state-text">Failed to load donors</div></div>';
+                requestsContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="empty-state-text">Failed to load requests</div></div>';
+            }
+        }
+
+        function updateStats(donors, requests) {
+            document.getElementById('totalDonors').textContent = donors.length;
+            document.getElementById('totalRequests').textContent = requests.length;
+            const available = donors.filter(d => d.availability === 'Yes').length;
+            document.getElementById('availableDonors').textContent = available;
+        }
+
+        function displayDonors(donors) {
+            if (donors.length === 0) {
+                donorsContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="empty-state-text">No donors found.</div></div>';
+                return;
+            }
+
+            let html = `<table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th>Contact</th>
+                        <th>Department</th>
+                        <th>Availability</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            donors.forEach(donor => {
+                html += `
+                    <tr>
+                        <td><strong>${donor.fullName}</strong></td>
+                        <td>${donor.age}</td>
+                        <td>${donor.gender}</td>
+                        <td><span class="badge badge-danger">${donor.bloodGroup}</span></td>
+                        <td>${donor.contact}</td>
+                        <td>${donor.department}</td>
+                        <td>
+                            <select class="select-input availability-select" data-id="${donor.id}">
+                                <option value="Yes" ${donor.availability === 'Yes' ? 'selected' : ''}>Yes</option>
+                                <option value="No" ${donor.availability === 'No' ? 'selected' : ''}>No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="action-btn" onclick="deleteDonor('${donor.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table>`;
+            donorsContainer.innerHTML = html;
+
+            // Add event listeners for availability changes
+            document.querySelectorAll('.availability-select').forEach(select => {
+                select.addEventListener('change', async (e) => {
+                    const donorId = e.target.dataset.id;
+                    const availability = e.target.value;
+                    const result = await adminUpdateDonorAvailability(donorId, availability);
+                    if (result.success) {
+                        showAlert('Donor availability updated successfully!', 'success');
+                        loadData();
+                    } else {
+                        showAlert('Failed to update availability.', 'error');
+                        loadData();
+                    }
+                });
+            });
+        }
+
+        function displayRequests(requests) {
+            if (requests.length === 0) {
+                requestsContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div><div class="empty-state-text">No blood requests found.</div></div>';
+                return;
+            }
+
+            let html = `<table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Requester</th>
+                        <th>Blood Group</th>
+                        <th>Contact</th>
+                        <th>Department</th>
+                        <th>Reason</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            requests.forEach(request => {
+                const date = new Date(request.timestamp);
+                html += `
+                    <tr>
+                        <td><strong>${request.requesterName}</strong></td>
+                        <td><span class="badge badge-danger">${request.bloodGroup}</span></td>
+                        <td>${request.contact}</td>
+                        <td>${request.department}</td>
+                        <td>${request.reason || '-'}</td>
+                        <td>${date.toLocaleDateString()}</td>
+                        <td>
+                            <button class="action-btn" onclick="deleteRequest('${request.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table>`;
+            requestsContainer.innerHTML = html;
+        }
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.data-table tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Tab filtering
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const section = this.closest('.data-section');
+                section.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Add filtering logic here if needed
+            });
+        });
+
+        // Make functions available globally
+        window.deleteDonor = async (donorId) => {
+            if (confirm('Are you sure you want to delete this donor record?')) {
+                const result = await adminDeleteDonor(donorId);
+                if (result.success) {
+                    showAlert('Donor deleted successfully!', 'success');
+                    loadData();
+                } else {
+                    showAlert('Failed to delete donor.', 'error');
+                }
+            }
+        };
+
+        window.deleteRequest = async (requestId) => {
+            if (confirm('Are you sure you want to delete this request?')) {
+                const result = await adminDeleteRequest(requestId);
+                if (result.success) {
+                    showAlert('Request deleted successfully!', 'success');
+                    loadData();
+                } else {
+                    showAlert('Failed to delete request.', 'error');
+                }
+            }
+        };
+
+        refreshBtn.addEventListener('click', () => {
+            loadData();
+            showAlert('Data refreshed!', 'success');
+        });
+
+        logoutBtn.addEventListener('click', async () => {
+            sessionStorage.removeItem('adminLoggedIn');
+            sessionStorage.removeItem('adminEmail');
+            const result = await logOut();
+            if (result.success || true) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

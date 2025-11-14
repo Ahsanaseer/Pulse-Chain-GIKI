@@ -1,0 +1,128 @@
+/* Request Page Specific Styles */
+.request-container {
+    width: 100%;
+}
+
+/* Filter Section */
+.filter-section {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: end;
+    border: 1px solid var(--border-color);
+}
+
+.filter-section .form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+table th {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-dark-blue) 100%);
+    color: white;
+    font-weight: 600;
+}
+
+table tr:hover {
+    background: var(--bg-secondary);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+.empty-state p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Navigation Styles */
+.nav-bar {
+    background: var(--bg-card);
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.nav-bar h2 {
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.nav-bar .nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+    }
+
+    .filter-section .form-group {
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        padding: 8px;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-bar .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-bar .nav-links .btn {
+        width: 100%;
+    }
+}
+

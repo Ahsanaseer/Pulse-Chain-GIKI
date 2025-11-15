@@ -31,7 +31,7 @@ body {
     padding: 16px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     border-bottom: 1px solid var(--card-border);
 }
 
@@ -51,10 +51,28 @@ body {
     height: 24px;
 }
 
+.logo-icon-img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    display: block;
+    margin-top: 8px;
+    margin-left: -10px;
+    padding: 0;
+}
+
 .logo-text {
     font-size: 16px;
     font-weight: 400;
     color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin-left: -10px;
 }
 
 .sidebar-menu {
@@ -101,6 +119,12 @@ body {
 .menu-icon svg {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
+    display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    align-self: center;
 }
 
 .menu-text {

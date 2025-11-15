@@ -134,7 +134,7 @@
                         <td>${donor.medicalNote || '-'}</td>
                         <td>
                             ${donor.availability === 'Yes' ? 
-                                `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>` 
+                                `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" data-donor-id="${donor.id}" data-donor-name="${donor.fullName}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>` 
                                 : '<span style="color: var(--text-secondary);">-</span>'
                             }
                         </td>
@@ -155,6 +155,8 @@
             requestButtons.forEach(button => {
                 button.addEventListener('click', async () => {
                     const bloodGroup = button.getAttribute('data-blood-group');
+                    const donorId = button.getAttribute('data-donor-id');
+                    const donorName = button.getAttribute('data-donor-name');
                     const user = getCurrentUser();
                     
                     if (!user || !user.email) {
@@ -166,10 +168,12 @@
                     button.disabled = true;
                     button.textContent = 'Requesting...';
                     
-                    const result = await createBloodRequest(user.email, bloodGroup);
+                    // Get user's display name (full name) from Firebase Auth
+                    const fullName = user.displayName || user.email;
+                    const result = await createBloodRequest(user.email, bloodGroup, fullName, donorId, donorName);
                     
                     if (result.success) {
-                        showAlert(`Blood request for ${bloodGroup} submitted successfully!`, 'success');
+                        showAlert(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`, 'success');
                         button.textContent = 'Requested';
                         button.disabled = true;
                         button.style.opacity = '0.6';

@@ -1,5 +1,5 @@
 // Blood Request Management Module
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import { db } from './firebase-config.js';
 
 /**
@@ -26,12 +26,41 @@ export async function createRequest(requestData) {
  */
 export async function getAllRequests() {
     try {
-        const querySnapshot = await getDocs(collection(db, 'requests'));
+        const querySnapshot = await getDocs(collection(db, 'allRequests'));
         const requests = [];
         querySnapshot.forEach((doc) => {
-            requests.push({ id: doc.id, ...doc.data() });
+            const data = doc.data();
+            // Map allRequests structure to expected format
+            requests.push({ 
+                id: doc.id,
+                requesterName: data.fullName || data.userEmail || 'Unknown', // Use fullName if available, otherwise email
+                bloodGroup: data.requestBlood || data.bloodGroup || '-',
+                contact: data.contact || '-',
+                department: data.department || '-',
+                reason: data.reason || '-',
+                timestamp: data.timestamp,
+                status: data.status || 'pending', // Add status field
+                userEmail: data.userEmail, // Keep original email for reference
+                fullName: data.fullName || data.userEmail, // Keep fullName for reference
+                requestedDonorId: data.requestedDonorId || null, // Store requested donor ID
+                requestedDonorName: data.requestedDonorName || null // Store requested donor name
+            });
         });
         return { success: true, requests: requests };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}
+
+/**
+ * Update request status
+ */
+export async function updateRequestStatus(requestId, status) {
+    try {
+        await updateDoc(doc(db, 'allRequests', requestId), {
+            status: status
+        });
+        return { success: true };
     } catch (error) {
         return { success: false, error: error.message };
     }
@@ -42,7 +71,7 @@ export async function getAllRequests() {
  */
 export async function deleteRequest(requestId) {
     try {
-        await deleteDoc(doc(db, 'requests', requestId));
+        await deleteDoc(doc(db, 'allRequests', requestId));
         return { success: true };
     } catch (error) {
         return { success: false, error: error.message };
@@ -52,11 +81,14 @@ export async function deleteRequest(requestId) {
 /**
  * Create a blood request in allRequests collection
  */
-export async function createBloodRequest(userEmail, requestBlood) {
+export async function createBloodRequest(userEmail, requestBlood, fullName, requestedDonorId = null, requestedDonorName = null) {
     try {
         const docRef = await addDoc(collection(db, 'allRequests'), {
             userEmail: userEmail,
             requestBlood: requestBlood,
+            fullName: fullName || userEmail, // Use fullName if provided, otherwise fallback to email
+            requestedDonorId: requestedDonorId || null, // Store the specific donor ID that was requested
+            requestedDonorName: requestedDonorName || null, // Store the donor name for reference
             timestamp: new Date().toISOString()
         });
         return { success: true, id: docRef.id };

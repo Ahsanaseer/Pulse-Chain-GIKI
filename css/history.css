@@ -1,0 +1,220 @@
+/* History Page Specific Styles */
+
+.history-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.history-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid var(--accent-purple);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.history-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.history-card.donation {
+    border-left-color: #3b82f6;
+}
+
+.history-card.request {
+    border-left-color: #ef4444;
+}
+
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.history-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.history-type-badge.donation {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.history-type-badge.request {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.history-date {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.history-card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.history-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-detail-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.history-detail-value {
+    font-size: 15px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.history-detail-value.blood-group {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-purple);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.status-badge.available {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.status-badge.unavailable {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.status-badge.pending {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.status-badge.completed {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.history-card-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.history-note {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.history-id {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-family: monospace;
+    opacity: 0.6;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    opacity: 0.3;
+    color: var(--text-secondary);
+}
+
+.empty-state-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.empty-state-description {
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+.empty-state-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Search Highlight */
+.highlight {
+    background: rgba(147, 51, 234, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-card-body {
+        grid-template-columns: 1fr;
+    }
+
+    .history-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-card {
+        padding: 16px;
+    }
+}

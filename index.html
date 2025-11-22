@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,12 @@
     <link rel="icon" type="image/png" href="PICS/Pulse Chain GIKI.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -23,56 +26,76 @@
             <nav class="sidebar-menu">
                 <a href="#" class="menu-item active" data-page="dashboard">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
                         </svg>
                     </span>
                     <span class="menu-text">Home</span>
                 </a>
+                <a href="hospital-dashboard.html" class="menu-item">
+                    <span class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                    </span>
+                    <span class="menu-text">Hospital Dashboard</span>
+                </a>
                 <a href="donate.html" class="menu-item">
                     <span class="menu-icon" style="display: flex; align-items: center; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block; margin-top: -2px;">
-                            <path d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z" fill="currentColor" transform="scale(1 -1) translate(0 -24)"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 24px; height: 24px; display: block; margin-top: -2px;">
+                            <path
+                                d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z"
+                                fill="currentColor" transform="scale(1 -1) translate(0 -24)" />
                         </svg>
                     </span>
                     <span class="menu-text">Donate Blood</span>
                 </a>
                 <a href="request.html" class="menu-item">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="m21 21-4.35-4.35"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
                         </svg>
                     </span>
                     <span class="menu-text">Request Blood</span>
                 </a>
-                <a href="#" class="menu-item" data-page="history">
+                <a href="history.html" class="menu-item">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="1 4 1 10 7 10"/>
-                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="1 4 1 10 7 10" />
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
                         </svg>
                     </span>
                     <span class="menu-text">My History</span>
                 </a>
                 <a href="#" class="menu-item" data-page="profile">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
                         </svg>
                     </span>
                     <span class="menu-text">Profile</span>
                 </a>
             </nav>
-            
+
             <div class="user-profile-section">
                 <div class="user-profile" id="userProfile">
                     <div class="user-avatar" id="userAvatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
                         </svg>
                     </div>
                     <div class="user-info">
@@ -91,15 +114,17 @@
                 <div class="header-actions">
                     <div class="search-bar">
                         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                         <input type="text" placeholder="Search donors, requests...">
                     </div>
                     <button class="logout-icon-btn" id="logoutBtn" style="display: none;" title="Logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
                         </svg>
                     </button>
                 </div>
@@ -132,10 +157,13 @@
                 <div class="hero-card">
                     <div class="hero-label">PULSE CHAIN GIKI</div>
                     <h2 class="hero-title" id="heroTitle">Your Gateway to Saving Lives</h2>
-                    <p class="hero-description">Join our community of donors and help save lives. Every donation makes a difference. Register as a donor or request blood when needed.</p>
+                    <p class="hero-description">Join our community of donors and help save lives. Every donation makes a
+                        difference. Register as a donor or request blood when needed.</p>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="donate.html" class="hero-button" style="text-decoration: none; display: inline-block;">Register as Donor</a>
-                        <a href="request.html" class="hero-button" style="text-decoration: none; display: inline-block;">Request Blood</a>
+                        <a href="donate.html" class="hero-button"
+                            style="text-decoration: none; display: inline-block;">Register as Donor</a>
+                        <a href="request.html" class="hero-button"
+                            style="text-decoration: none; display: inline-block;">Request Blood</a>
                     </div>
                 </div>
 
@@ -144,40 +172,54 @@
                     <div class="section-header">
                         <h2 class="section-title">Quick Actions</h2>
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px;">
-                        <a href="donate.html" class="stat-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px;">
+                        <a href="donate.html" class="stat-card"
+                            style="text-decoration: none; color: inherit; cursor: pointer;">
                             <div style="width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent-purple);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z" fill="currentColor" transform="scale(1 -1) translate(0 -24)"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z"
+                                        fill="currentColor" transform="scale(1 -1) translate(0 -24)" />
                                 </svg>
                             </div>
                             <div class="stat-label" style="text-align: center;">Donate Blood</div>
-                            <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
+                            <div
+                                style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
                                 Register yourself as a blood donor and help save lives
                             </div>
                         </a>
-                        <a href="request.html" class="stat-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+                        <a href="request.html" class="stat-card"
+                            style="text-decoration: none; color: inherit; cursor: pointer;">
                             <div style="width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent-purple);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8"/>
-                                    <path d="m21 21-4.35-4.35"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
                                 </svg>
                             </div>
                             <div class="stat-label" style="text-align: center;">Request Blood</div>
-                            <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
+                            <div
+                                style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
                                 Search for available blood donors in your area
                             </div>
                         </a>
                         <div class="stat-card" style="cursor: pointer;" onclick="alert('Feature coming soon!')">
                             <div style="width: 48px; height: 48px; margin: 0 auto 16px; color: var(--accent-purple);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="20" x2="18" y2="10"/>
-                                    <line x1="12" y1="20" x2="12" y2="4"/>
-                                    <line x1="6" y1="20" x2="6" y2="14"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10" />
+                                    <line x1="12" y1="20" x2="12" y2="4" />
+                                    <line x1="6" y1="20" x2="6" y2="14" />
                                 </svg>
                             </div>
                             <div class="stat-label" style="text-align: center;">View Statistics</div>
-                            <div style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
+                            <div
+                                style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 8px;">
                                 Check donation statistics and impact
                             </div>
                         </div>
@@ -194,15 +236,20 @@
                             <button class="tab-button">Requests</button>
                         </div>
                     </div>
-                    <div id="recentActivityContainer" style="padding: 40px; text-align: center; color: var(--text-secondary);">
-                        <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                    <div id="recentActivityContainer"
+                        style="padding: 40px; text-align: center; color: var(--text-secondary);">
+                        <div
+                            style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
                             </svg>
                         </div>
                         <div style="font-size: 16px;">No recent activity</div>
-                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Start by donating blood or making a request</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Start by donating blood or making a
+                            request</div>
                     </div>
                 </div>
             </div>
@@ -220,15 +267,17 @@
                 <div class="profile-content">
                     <div class="profile-avatar-section">
                         <div class="profile-avatar-large" id="profileAvatarLarge">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
                             </svg>
                         </div>
                         <h3 id="profileName">User</h3>
                         <p id="profileEmail" class="profile-email">user@example.com</p>
                     </div>
-                    
+
                     <div class="profile-info-section">
                         <div class="profile-info-item">
                             <label>Full Name</label>
@@ -259,10 +308,11 @@
 
     <!-- Mobile Menu Toggle -->
     <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
     </button>
 
@@ -306,7 +356,7 @@
         const profileModal = document.getElementById('profileModal');
         const closeProfileModal = document.getElementById('closeProfileModal');
         const profileLogoutBtn = document.getElementById('profileLogoutBtn');
-        
+
         // Function to open profile modal
         function openProfileModal() {
             if (!isLoggedIn) {
@@ -319,7 +369,7 @@
                     document.getElementById('profileEmail').textContent = user.email || '-';
                     document.getElementById('profileDisplayName').textContent = user.displayName || '-';
                     document.getElementById('profileEmailValue').textContent = user.email || '-';
-                    
+
                     // Set avatar
                     const profileAvatarLarge = document.getElementById('profileAvatarLarge');
                     if (user.displayName) {
@@ -327,7 +377,7 @@
                     } else {
                         profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
                     }
-                    
+
                     // Set member since date
                     if (user.metadata && user.metadata.creationTime) {
                         const createdDate = new Date(user.metadata.creationTime);
@@ -339,10 +389,10 @@
                 profileModal.style.display = 'flex';
             }
         }
-        
+
         // Open profile modal when clicking profile section
         userProfile.addEventListener('click', openProfileModal);
-        
+
         // Open profile modal when clicking profile menu item
         const profileMenuItem = document.querySelector('.menu-item[data-page="profile"]');
         if (profileMenuItem) {
@@ -424,13 +474,13 @@
                 if (allActivities.length > 0) {
                     // Display activities
                     let html = '<div style="display: flex; flex-direction: column; gap: 16px; text-align: left;">';
-                    
+
                     allActivities.slice(0, 10).forEach(activity => {
                         const date = new Date(activity.timestamp);
-                        const formattedDate = date.toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'short', 
-                            day: 'numeric' 
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
                         });
 
                         if (activity.type === 'donation') {
@@ -473,19 +523,19 @@
                             `;
                         }
                     });
-                    
+
                     html += '</div>';
                     activityContainer.innerHTML = html;
                     activityContainer.style.textAlign = 'left';
                     activityContainer.style.padding = '20px';
                 } else {
                     // No activities found
-                    const emptyMessage = filter === 'donations' 
+                    const emptyMessage = filter === 'donations'
                         ? 'No donations found. Start by donating blood!'
                         : filter === 'requests'
-                        ? 'No requests found. Make a blood request!'
-                        : 'No recent activity. Start by donating blood or making a request';
-                    
+                            ? 'No requests found. Make a blood request!'
+                            : 'No recent activity. Start by donating blood or making a request';
+
                     activityContainer.innerHTML = `
                         <div style="width: 48px; height: 48px; margin: 0 auto 16px; opacity: 0.5; color: var(--text-secondary);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -512,18 +562,18 @@
             // Find the Recent Activity section by finding the section that contains recentActivityContainer
             const activityContainer = document.getElementById('recentActivityContainer');
             if (!activityContainer) return;
-            
+
             const activitySection = activityContainer.closest('.data-section');
             if (!activitySection) return;
-            
+
             const tabButtons = activitySection.querySelectorAll('.section-tabs .tab-button');
-            
+
             // Remove existing listeners by cloning and replacing
             tabButtons.forEach((button) => {
                 const newButton = button.cloneNode(true);
                 button.parentNode.replaceChild(newButton, button);
             });
-            
+
             // Add new event listeners
             const newTabButtons = activitySection.querySelectorAll('.section-tabs .tab-button');
             newTabButtons.forEach((button) => {
@@ -532,7 +582,7 @@
                     newTabButtons.forEach(btn => btn.classList.remove('active'));
                     // Add active class to clicked button
                     button.classList.add('active');
-                    
+
                     // Determine filter based on button text
                     const filter = button.textContent.trim().toLowerCase();
                     const filterMap = {
@@ -540,9 +590,9 @@
                         'donations': 'donations',
                         'requests': 'requests'
                     };
-                    
+
                     const selectedFilter = filterMap[filter] || 'all';
-                    
+
                     // Reload activity with new filter
                     if (currentUserEmail) {
                         loadRecentActivity(currentUserEmail, selectedFilter);
@@ -550,7 +600,7 @@
                 });
             });
         }
-        
+
         // Setup tabs after DOM is ready
         setTimeout(() => {
             setupActivityTabs();
@@ -560,32 +610,32 @@
         onAuthStateChange(async (user) => {
             // Wait a moment to ensure Firebase has fully initialized
             await new Promise(resolve => setTimeout(resolve, 100));
-            
+
             if (user) {
                 isLoggedIn = true;
                 const displayName = user.displayName || user.email || 'User';
                 const firstName = displayName.split(' ')[0]; // Get first name for greeting
-                
+
                 // Update profile section - show name instead of email
                 userNameSpan.textContent = displayName;
                 userRole.textContent = 'User';
-                
+
                 // Update hero title with greeting
                 if (user.displayName) {
                     heroTitle.textContent = `Hello, ${firstName}`;
                 } else {
                     heroTitle.textContent = 'Your Gateway to Saving Lives';
                 }
-                
+
                 if (displayName && displayName !== 'User') {
                     userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
                 } else {
                     userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
                 }
-                
+
                 logoutBtn.style.display = 'block';
                 userProfile.style.cursor = 'default';
-                
+
                 // Load recent activity for logged-in user
                 if (user.email) {
                     loadRecentActivity(user.email);
@@ -597,7 +647,7 @@
             } else {
                 // No user - ensure logged-out state
                 initializeLoggedOutState();
-                
+
                 // Reset recent activity
                 const activityContainer = document.getElementById('recentActivityContainer');
                 if (activityContainer) {
@@ -630,19 +680,20 @@
         const topHeader = document.querySelector('.top-header');
         if (topHeader) {
             let lastScrollTop = 0;
-            
+
             window.addEventListener('scroll', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
+
                 if (scrollTop > 50) {
                     topHeader.classList.add('scrolled');
                 } else {
                     topHeader.classList.remove('scrolled');
                 }
-                
+
                 lastScrollTop = scrollTop;
             });
         }
     </script>
 </body>
+
 </html>

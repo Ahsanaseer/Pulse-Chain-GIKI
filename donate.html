@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,137 +12,235 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/donate.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1 style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    style="width: 48px; height: 48px; flex-shrink: 0; margin: 0; padding: 0; display: block; margin-top: -4px;">
-                    <path d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z"
-                        fill="currentColor" transform="scale(1 -1) translate(0 -24)" />
-                </svg>
-                <span>Pulse Chain GIKI</span>
-            </h1>
-            <p>Donate Blood</p>
-        </header>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
 
+        <!-- Main Content -->
+        <main class="main-content">
+            <div id="top-header-container"></div>
 
-        <div class="card" style="max-width: 700px; margin: 0 auto;">
-            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Donor Information Form</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
-                Please fill in your details to register as a blood donor. Your information will help connect you with
-                those in need.
-            </p>
+            <div class="content-area">
+                <div class="container">
+                    <div class="card" style="max-width: 700px; margin: 0 auto;">
+                        <h2
+                            style="text-align: center; color: var(--text-primary); margin-bottom: 30px; font-weight: 500;">
+                            Donor
+                            Information Form</h2>
+                        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                            Please fill in your details to register as a blood donor. Your information will help connect
+                            you with
+                            those in need.
+                        </p>
 
-            <form id="donateForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name *</label>
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
+                        <form id="donateForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
 
-                <div class="form-group">
-                    <label for="age">Age *</label>
-                    <input type="number" id="age" name="age" min="18" max="65" required>
-                </div>
+                            <div class="form-group">
+                                <label for="age">Age *</label>
+                                <input type="number" id="age" name="age" min="18" max="65" required>
+                            </div>
 
-                <div class="form-group">
-                    <label>Gender *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="gender" value="Male" required>
-                            <span class="radio-label">Male</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="gender" value="Female" required>
-                            <span class="radio-label">Female</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="gender" value="Other" required>
-                            <span class="radio-label">Other</span>
-                        </label>
+                            <div class="form-group">
+                                <label>Gender *</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Male" required>
+                                        <span class="radio-label">Male</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Female" required>
+                                        <span class="radio-label">Female</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Other" required>
+                                        <span class="radio-label">Other</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Blood Group *</label>
+                                <div class="radio-group blood-group-grid">
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="A+" required>
+                                        <span class="radio-label">A+</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="A-" required>
+                                        <span class="radio-label">A-</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="B+" required>
+                                        <span class="radio-label">B+</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="B-" required>
+                                        <span class="radio-label">B-</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="AB+" required>
+                                        <span class="radio-label">AB+</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="AB-" required>
+                                        <span class="radio-label">AB-</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="O+" required>
+                                        <span class="radio-label">O+</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="bloodGroup" value="O-" required>
+                                        <span class="radio-label">O-</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact">Contact Number *</label>
+                                <input type="tel" id="contact" name="contact" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="medicalNote">Medical Notes (Optional)</label>
+                                <textarea id="medicalNote" name="medicalNote"
+                                    placeholder="Any medical conditions or notes..."></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                    <span class="checkbox-label">I agree to share my information with those in need and
+                                        confirm that
+                                        all details provided are accurate *</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Submit Donor Information</button>
+                        </form>
+                    </div>
+
+                    <div class="back-to-dashboard-container">
+                        <a href="index.html" class="btn-back-to-dashboard">← Back to Dashboard</a>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label>Blood Group *</label>
-                    <div class="radio-group blood-group-grid">
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="A+" required>
-                            <span class="radio-label">A+</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="A-" required>
-                            <span class="radio-label">A-</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="B+" required>
-                            <span class="radio-label">B+</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="B-" required>
-                            <span class="radio-label">B-</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="AB+" required>
-                            <span class="radio-label">AB+</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="AB-" required>
-                            <span class="radio-label">AB-</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="O+" required>
-                            <span class="radio-label">O+</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="bloodGroup" value="O-" required>
-                            <span class="radio-label">O-</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="contact">Contact Number *</label>
-                    <input type="tel" id="contact" name="contact" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="medicalNote">Medical Notes (Optional)</label>
-                    <textarea id="medicalNote" name="medicalNote"
-                        placeholder="Any medical conditions or notes..."></textarea>
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-container">
-                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                        <span class="checkbox-label">I agree to share my information with those in need and confirm that
-                            all details provided are accurate *</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Submit Donor Information</button>
-            </form>
-        </div>
-
-        <div class="back-to-dashboard-container">
-            <a href="index.html" class="btn-back-to-dashboard">← Back to Dashboard</a>
-        </div>
+            </div>
+        </main>
     </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal-container"></div>
 
     <script type="module">
         import { addDonor } from './js/donor.js';
-        import { getCurrentUser, onAuthStateChange } from './js/login.js';
+        import { getCurrentUser, onAuthStateChange, logOut } from './js/login.js';
         import { showSuccessToast, showErrorToast } from './js/toast.js';
+        import { initializeDashboardComponents } from './js/components.js';
 
         const donateForm = document.getElementById('donateForm');
+
+        // Initialize dashboard components
+        initializeDashboardComponents({
+            activePage: 'donate',
+            headerTitle: 'Donate Blood',
+            searchPlaceholder: 'Search donors, requests...'
+        });
+
+        // Select DOM elements
+        const userNameSpan = document.getElementById('userName');
+        const userRole = document.getElementById('userRole');
+        const userAvatar = document.getElementById('userAvatar');
+        const userProfile = document.getElementById('userProfile');
+        const profileModal = document.getElementById('profileModal');
+        const closeProfileModal = document.getElementById('closeProfileModal');
+        const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+
+        // Profile Modal Logic
+        function openProfileModal() {
+            const user = getCurrentUser();
+            if (user) {
+                // Update modal content
+                document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+                document.getElementById('profileEmail').textContent = user.email || '-';
+                document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+                document.getElementById('profileEmailValue').textContent = user.email || '-';
+
+                // Set avatar
+                const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+                if (user.displayName) {
+                    profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+                } else {
+                    profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+                }
+
+                // Set member since
+                if (user.metadata && user.metadata.creationTime) {
+                    const createdDate = new Date(user.metadata.creationTime);
+                    document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+                } else {
+                    document.getElementById('profileMemberSince').textContent = '-';
+                }
+
+                profileModal.style.display = 'flex';
+            }
+        }
+
+        if (userProfile) {
+            userProfile.addEventListener('click', openProfileModal);
+        }
+
+        if (closeProfileModal) {
+            closeProfileModal.addEventListener('click', () => {
+                profileModal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                profileModal.style.display = 'none';
+            }
+        });
+
+        if (profileLogoutBtn) {
+            profileLogoutBtn.addEventListener('click', async () => {
+                const result = await logOut();
+                if (result.success) {
+                    sessionStorage.removeItem('adminLoggedIn');
+                    sessionStorage.removeItem('adminEmail');
+                    profileModal.style.display = 'none';
+                    showSuccessToast('Logged out successfully!');
+                    // onAuthStateChange will handle redirect
+                }
+            });
+        }
 
         // Check auth state
         onAuthStateChange((user) => {
             if (!user) {
                 window.location.href = 'index.html';
+            } else {
+                // Update Sidebar UI
+                const displayName = user.displayName || user.email || 'User';
+                if (userNameSpan) userNameSpan.textContent = displayName;
+                if (userRole) userRole.textContent = 'User';
+
+                if (userAvatar) {
+                    if (displayName && displayName !== 'User') {
+                        userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
+                    } else {
+                        userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
+                    }
+                }
+
+                if (userProfile) userProfile.style.cursor = 'pointer';
             }
         });
 

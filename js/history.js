@@ -3,10 +3,18 @@
  * Displays detailed user donation and request history
  */
 
+import { initializeDashboardComponents } from './components.js';
 import { getCurrentUser, logOut, onAuthStateChange } from './login.js';
 import { getUserDonations } from './donor.js';
 import { getUserRequests } from './request.js';
 import { showSuccessToast, showErrorToast } from './toast.js';
+
+// Initialize dashboard components
+initializeDashboardComponents({
+    activePage: 'history',
+    headerTitle: 'My History',
+    searchPlaceholder: 'Search history...'
+});
 
 // DOM Elements
 const userNameSpan = document.getElementById('userName');

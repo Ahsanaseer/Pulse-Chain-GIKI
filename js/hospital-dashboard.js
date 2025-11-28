@@ -3,10 +3,18 @@
  * Handles blood inventory display and donor requests for hospitals
  */
 
+import { initializeDashboardComponents } from './components.js';
 import { getCurrentUser, logOut, onAuthStateChange } from './login.js';
 import { getAllDonors, getFilteredDonors } from './donor.js';
 import { createBloodRequest } from './request.js';
 import { showSuccessToast, showErrorToast } from './toast.js';
+
+// Initialize dashboard components
+initializeDashboardComponents({
+    activePage: 'hospital-dashboard',
+    headerTitle: 'Hospital Dashboard',
+    searchPlaceholder: 'Search blood groups...'
+});
 
 // DOM Elements
 const userNameSpan = document.getElementById('userName');

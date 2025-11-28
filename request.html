@@ -11,73 +11,170 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/request.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Pulse Chain GIKI</h1>
-            <p>Request Blood</p>
-        </header>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
 
-        <div class="card">
-            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Search for Available Donors
-            </h2>
+        <!-- Main Content -->
+        <main class="main-content">
+            <div id="top-header-container"></div>
 
-            <div class="filter-section">
-                <div class="form-group">
-                    <label for="bloodGroupFilter">Blood Group</label>
-                    <select id="bloodGroupFilter" name="bloodGroupFilter">
-                        <option value="">All Blood Groups</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
+            <div class="content-area">
+                <div class="card">
+                    <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 30px;">Search for
+                        Available Donors
+                    </h2>
+
+                    <div class="filter-section">
+                        <div class="form-group">
+                            <label for="bloodGroupFilter">Blood Group</label>
+                            <select id="bloodGroupFilter" name="bloodGroupFilter">
+                                <option value="">All Blood Groups</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availabilityFilter">Availability</label>
+                            <select id="availabilityFilter" name="availabilityFilter">
+                                <option value="Yes">Available Only</option>
+                                <option value="No">Not Available</option>
+                                <option value="">All</option>
+                            </select>
+                        </div>
+
+                        <button id="searchBtn" class="btn btn-primary">Search</button>
+                    </div>
+
+                    <div id="donorsContainer">
+                        <div class="empty-state">
+                            <p>Select filters and click "Search" to find available donors</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="availabilityFilter">Availability</label>
-                    <select id="availabilityFilter" name="availabilityFilter">
-                        <option value="Yes">Available Only</option>
-                        <option value="No">Not Available</option>
-                        <option value="">All</option>
-                    </select>
-                </div>
-
-                <button id="searchBtn" class="btn btn-primary">Search</button>
             </div>
-
-            <div id="donorsContainer">
-                <div class="empty-state">
-                    <p>Select filters and click "Search" to find available donors</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="back-to-dashboard-container">
-            <a href="index.html" class="btn-back-to-dashboard">← Back to Dashboard</a>
-        </div>
+        </main>
     </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal-container"></div>
 
     <script type="module">
         import { getAllDonors, getFilteredDonors } from './js/donor.js';
-        import { onAuthStateChange, getCurrentUser } from './js/login.js';
+        import { onAuthStateChange, getCurrentUser, logOut } from './js/login.js';
         import { createBloodRequest } from './js/request.js';
         import { showSuccessToast, showErrorToast } from './js/toast.js';
+        import { initializeDashboardComponents } from './js/components.js';
 
         const searchBtn = document.getElementById('searchBtn');
         const donorsContainer = document.getElementById('donorsContainer');
+
+        // Initialize dashboard components
+        initializeDashboardComponents({
+            activePage: 'request',
+            headerTitle: 'Request Blood',
+            searchPlaceholder: 'Search donors...'
+        });
+
+        // Select DOM elements for Profile Logic
+        const userNameSpan = document.getElementById('userName');
+        const userRole = document.getElementById('userRole');
+        const userAvatar = document.getElementById('userAvatar');
+        const userProfile = document.getElementById('userProfile');
+        const profileModal = document.getElementById('profileModal');
+        const closeProfileModal = document.getElementById('closeProfileModal');
+        const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+
+        // Profile Modal Logic
+        function openProfileModal() {
+            const user = getCurrentUser();
+            if (user) {
+                // Update modal content
+                document.getElementById('profileName').textContent = user.displayName || user.email || 'User';
+                document.getElementById('profileEmail').textContent = user.email || '-';
+                document.getElementById('profileDisplayName').textContent = user.displayName || '-';
+                document.getElementById('profileEmailValue').textContent = user.email || '-';
+
+                // Set avatar
+                const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+                if (user.displayName) {
+                    profileAvatarLarge.innerHTML = `<span style="font-size: 32px; font-weight: 400;">${user.displayName.charAt(0).toUpperCase()}</span>`;
+                } else {
+                    profileAvatarLarge.innerHTML = '<span style="font-size: 32px; font-weight: 400;">U</span>';
+                }
+
+                // Set member since
+                if (user.metadata && user.metadata.creationTime) {
+                    const createdDate = new Date(user.metadata.creationTime);
+                    document.getElementById('profileMemberSince').textContent = createdDate.toLocaleDateString();
+                } else {
+                    document.getElementById('profileMemberSince').textContent = '-';
+                }
+
+                profileModal.style.display = 'flex';
+            }
+        }
+
+        if (userProfile) {
+            userProfile.addEventListener('click', openProfileModal);
+        }
+
+        if (closeProfileModal) {
+            closeProfileModal.addEventListener('click', () => {
+                profileModal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                profileModal.style.display = 'none';
+            }
+        });
+
+        if (profileLogoutBtn) {
+            profileLogoutBtn.addEventListener('click', async () => {
+                const result = await logOut();
+                if (result.success) {
+                    sessionStorage.removeItem('adminLoggedIn');
+                    sessionStorage.removeItem('adminEmail');
+                    profileModal.style.display = 'none';
+                    showSuccessToast('Logged out successfully!');
+                    // onAuthStateChange will handle redirect
+                }
+            });
+        }
 
         // Check auth state
         onAuthStateChange((user) => {
             if (!user) {
                 window.location.href = 'index.html';
+            } else {
+                // Update Sidebar UI
+                const displayName = user.displayName || user.email || 'User';
+                if (userNameSpan) userNameSpan.textContent = displayName;
+                if (userRole) userRole.textContent = 'User';
+
+                if (userAvatar) {
+                    if (displayName && displayName !== 'User') {
+                        userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
+                    } else {
+                        userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
+                    }
+                }
+
+                if (userProfile) userProfile.style.cursor = 'pointer';
             }
         });
 

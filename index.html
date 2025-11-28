@@ -17,118 +17,13 @@
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-logo">
-                <img src="PICS/Pulse_Chain_GIKI Logo Icon.png" alt="Pulse Chain GIKI Logo" class="logo-icon-img">
-                <div class="logo-text">Pulse Chain GIKI</div>
-            </div>
-
-            <nav class="sidebar-menu">
-                <a href="#" class="menu-item active" data-page="dashboard">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                            <polyline points="9 22 9 12 15 12 15 22" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">Home</span>
-                </a>
-                <a href="hospital-dashboard.html" class="menu-item">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                            <path d="M2 17l10 5 10-5" />
-                            <path d="M2 12l10 5 10-5" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">Hospital Dashboard</span>
-                </a>
-                <a href="donate.html" class="menu-item">
-                    <span class="menu-icon" style="display: flex; align-items: center; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            style="width: 24px; height: 24px; display: block; margin-top: -2px;">
-                            <path
-                                d="M12 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5c0-2.5-2-4.5-4.5-4.5z"
-                                fill="currentColor" transform="scale(1 -1) translate(0 -24)" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">Donate Blood</span>
-                </a>
-                <a href="request.html" class="menu-item">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8" />
-                            <path d="m21 21-4.35-4.35" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">Request Blood</span>
-                </a>
-                <a href="history.html" class="menu-item">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="1 4 1 10 7 10" />
-                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">My History</span>
-                </a>
-                <a href="#" class="menu-item" data-page="profile">
-                    <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </span>
-                    <span class="menu-text">Profile</span>
-                </a>
-            </nav>
-
-            <div class="user-profile-section">
-                <div class="user-profile" id="userProfile">
-                    <div class="user-avatar" id="userAvatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </div>
-                    <div class="user-info">
-                        <div class="user-name" id="userName">Login</div>
-                        <div class="user-role" id="userRole">Click to sign in</div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+        <div id="sidebar-container"></div>
 
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Header -->
-            <header class="top-header">
-                <h1 class="header-title">Dashboard</h1>
-                <div class="header-actions">
-                    <div class="search-bar">
-                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        <input type="text" placeholder="Search donors, requests...">
-                    </div>
-                    <button class="logout-icon-btn" id="logoutBtn" style="display: none;" title="Logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                            <polyline points="16 17 21 12 16 7" />
-                            <line x1="21" y1="12" x2="9" y2="12" />
-                        </svg>
-                    </button>
-                </div>
-            </header>
+            <div id="top-header-container"></div>
+
 
             <!-- Content Area -->
             <div class="content-area">
@@ -138,17 +33,17 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">My Donations</div>
-                        <div class="stat-value">0</div>
+                        <div class="stat-value" id="myDonationsCount">0</div>
                         <div class="stat-change">Total times donated</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">My Requests</div>
-                        <div class="stat-value">0</div>
+                        <div class="stat-value" id="myRequestsCount">0</div>
                         <div class="stat-change">Blood requests made</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Available Now</div>
-                        <div class="stat-value">-</div>
+                        <div class="stat-value" id="myAvailability">-</div>
                         <div class="stat-change">Check availability</div>
                     </div>
                 </div>
@@ -301,11 +196,22 @@
         </svg>
     </button>
 
+    <div id="mobile-menu-toggle-container"></div>
+    <!-- Profile Modal -->
+    <div id="profile-modal-container"></div>
+
     <script type="module">
+        import { initializeDashboardComponents } from './js/components.js';
         import { getCurrentUser, logOut, onAuthStateChange, signIn } from './js/login.js';
         import { getUserDonations } from './js/donor.js';
         import { getUserRequests } from './js/request.js';
         import { showSuccessToast, showErrorToast } from './js/toast.js';
+
+        initializeDashboardComponents({
+            activePage: 'home',
+            headerTitle: 'Dashboard',
+            searchPlaceholder: 'Search donors, requests...'
+        });
 
         const userNameSpan = document.getElementById('userName');
         const userRole = document.getElementById('userRole');
@@ -318,6 +224,9 @@
 
         let isLoggedIn = false;
 
+        // Initialize dashboard components
+
+
         // Initialize UI to logged-out state
         function initializeLoggedOutState() {
             isLoggedIn = false;
@@ -327,6 +236,11 @@
             userAvatar.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
             logoutBtn.style.display = 'none';
             userProfile.style.cursor = 'pointer';
+
+            // Reset stats
+            if (document.getElementById('myDonationsCount')) document.getElementById('myDonationsCount').textContent = '0';
+            if (document.getElementById('myRequestsCount')) document.getElementById('myRequestsCount').textContent = '0';
+            if (document.getElementById('myAvailability')) document.getElementById('myAvailability').textContent = '-';
         }
 
         // Initialize with logged-out state first
@@ -620,6 +534,43 @@
 
                 logoutBtn.style.display = 'block';
                 userProfile.style.cursor = 'default';
+
+                // Fetch and display stats
+                try {
+                    // Fetch donations (using donor records as proxy for now)
+                    const donationsResult = await getUserDonations(user.email);
+                    if (donationsResult.success) {
+                        if (document.getElementById('myDonationsCount')) {
+                            document.getElementById('myDonationsCount').textContent = donationsResult.donations.length;
+                        }
+
+                        // Check availability from latest donor record
+                        if (donationsResult.donations.length > 0) {
+                            const latestDonorRecord = donationsResult.donations[0];
+                            const availabilityElement = document.getElementById('myAvailability');
+                            if (availabilityElement) {
+                                availabilityElement.textContent = latestDonorRecord.availability;
+                                availabilityElement.style.color = latestDonorRecord.availability === 'Yes' ? '#28a745' : '#dc3545';
+                            }
+                        } else {
+                            if (document.getElementById('myAvailability')) {
+                                document.getElementById('myAvailability').textContent = 'No';
+                                document.getElementById('myAvailability').style.color = 'var(--text-secondary)';
+                            }
+                        }
+                    }
+
+                    // Fetch requests
+                    const requestsResult = await getUserRequests(user.email);
+                    if (requestsResult.success) {
+                        if (document.getElementById('myRequestsCount')) {
+                            document.getElementById('myRequestsCount').textContent = requestsResult.requests.length;
+                        }
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching stats:", error);
+                }
 
                 // Load recent activity for logged-in user
                 if (user.email) {

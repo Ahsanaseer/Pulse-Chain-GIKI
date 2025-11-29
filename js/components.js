@@ -260,26 +260,7 @@ export function initializeDashboardComponents(config = {}) {
     } = config;
 
     // 1. Inject Shimmer Overlay
-    const shimmerHTML = `
-        <div id="shimmerOverlay" class="shimmer-overlay">
-            <div class="skeleton-sidebar">
-                <div class="skeleton-item skeleton-logo"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
-            </div>
-            <div class="skeleton-main">
-                <div class="skeleton-item skeleton-header"><div class="shimmer-effect"></div></div>
-                <div class="skeleton-content">
-                    <div class="skeleton-item skeleton-card"><div class="shimmer-effect"></div></div>
-                    <div class="skeleton-item skeleton-card" style="height: 300px;"><div class="shimmer-effect"></div></div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('afterbegin', shimmerHTML);
+    // 1. Shimmer Overlay is now in HTML to prevent FOUC
 
     // 2. Hide Main Content initially
     const dashboardContainer = document.querySelector('.dashboard-container');

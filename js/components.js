@@ -173,7 +173,7 @@ export function renderMobileMenuToggle() {
     // Add event listener for mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
-    
+
     if (mobileMenuToggle && sidebar) {
         mobileMenuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
@@ -259,8 +259,51 @@ export function initializeDashboardComponents(config = {}) {
         searchPlaceholder = 'Search donors, requests...'
     } = config;
 
+    // 1. Inject Shimmer Overlay
+    const shimmerHTML = `
+        <div id="shimmerOverlay" class="shimmer-overlay">
+            <div class="skeleton-sidebar">
+                <div class="skeleton-item skeleton-logo"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-item skeleton-menu-item"><div class="shimmer-effect"></div></div>
+            </div>
+            <div class="skeleton-main">
+                <div class="skeleton-item skeleton-header"><div class="shimmer-effect"></div></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-item skeleton-card"><div class="shimmer-effect"></div></div>
+                    <div class="skeleton-item skeleton-card" style="height: 300px;"><div class="shimmer-effect"></div></div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('afterbegin', shimmerHTML);
+
+    // 2. Hide Main Content initially
+    const dashboardContainer = document.querySelector('.dashboard-container');
+    if (dashboardContainer) {
+        dashboardContainer.classList.add('content-hidden');
+    }
+
+    // 3. Render Components
     renderSidebar(activePage);
     renderTopHeader(headerTitle, searchPlaceholder);
     renderMobileMenuToggle();
     renderProfileModal();
+
+    // 4. Synchronize and Reveal (1 second delay)
+    setTimeout(() => {
+        const overlay = document.getElementById('shimmerOverlay');
+        if (overlay) {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 500); // Remove from DOM after fade out
+        }
+
+        if (dashboardContainer) {
+            dashboardContainer.classList.remove('content-hidden');
+            dashboardContainer.classList.add('content-visible');
+        }
+    }, 1000);
 }

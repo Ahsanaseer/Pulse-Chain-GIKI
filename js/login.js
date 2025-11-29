@@ -187,8 +187,13 @@ if (loginCard && signupCard && signinForm && signupForm) {
             } else {
                 // Regular user login
                 showSuccessToast('Login successful! Redirecting...');
+                
+                // Check for redirect URL in query parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect');
+                
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = redirectUrl || 'index.html';
                 }, 1000);
             }
         } else {
@@ -240,8 +245,13 @@ if (loginCard && signupCard && signinForm && signupForm) {
 
         if (result.success) {
             showSuccessToast('Account created successfully! Redirecting...');
+            
+            // Check for redirect URL in query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectUrl = urlParams.get('redirect');
+            
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = redirectUrl || 'index.html';
             }, 2000);
         } else {
             // signUp already provides formatted error messages

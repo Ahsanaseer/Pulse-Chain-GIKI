@@ -1,6 +1,6 @@
-// Authentication Module - Firebase imports
-import { 
-    createUserWithEmailAndPassword, 
+
+import {
+    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
@@ -32,7 +32,7 @@ export async function signUp(email, password, name) {
     } catch (error) {
         // Handle Firebase Auth errors
         let errorMessage = error.message;
-        
+
         if (error.code === 'auth/email-already-in-use') {
             errorMessage = 'This email is already registered. Please sign in instead.';
         } else if (error.code === 'auth/invalid-email') {
@@ -40,7 +40,7 @@ export async function signUp(email, password, name) {
         } else if (error.code === 'auth/weak-password') {
             errorMessage = 'Password is too weak. Please use a stronger password.';
         }
-        
+
         return { success: false, error: errorMessage };
     }
 }
@@ -98,7 +98,7 @@ export function onAuthStateChange(callback) {
 export async function isAdmin() {
     const user = auth.currentUser;
     if (!user) return false;
-    
+
     // Check admin status based on email from Firebase Authentication
     return user.email === ADMIN_EMAIL;
 }
@@ -122,19 +122,79 @@ const confirmPasswordInput = document.getElementById('confirmPassword');
 
 // Only initialize login page UI if elements exist (i.e., we're on login.html)
 if (loginCard && signupCard && signinForm && signupForm) {
+    // Helper functions for inline errors
+    function showInputError(inputId, message) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        // Add error class to input
+        input.classList.add('error');
+
+        // Check if error message already exists
+        let errorMsg = input.parentNode.querySelector('.error-message');
+        if (!errorMsg) {
+            errorMsg = document.createElement('span');
+            errorMsg.className = 'error-message';
+            input.parentNode.appendChild(errorMsg);
+        }
+        errorMsg.textContent = message;
+    }
+
+    function clearInputError(inputId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        input.classList.remove('error');
+        const errorMsg = input.parentNode.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+    }
+
+    function clearAllErrors() {
+        const inputs = document.querySelectorAll('.input');
+        inputs.forEach(input => {
+            input.classList.remove('error');
+            const errorMsg = input.parentNode.querySelector('.error-message');
+            if (errorMsg) {
+                errorMsg.remove();
+            }
+        });
+        alertContainer.innerHTML = '';
+    }
+
+    // Helper to toggle button loading state
+    function setLoadingState(button, isLoading) {
+        if (isLoading) {
+            button.classList.add('btn-loading');
+            button.disabled = true;
+        } else {
+            button.classList.remove('btn-loading');
+            button.disabled = false;
+        }
+    }
+
+    // Add input event listeners to clear errors on typing
+    const allInputs = document.querySelectorAll('.input');
+    allInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            clearInputError(input.id);
+        });
+    });
+
     // Switch between login and signup cards
     switchToSignup.addEventListener('click', (e) => {
         e.preventDefault();
         loginCard.classList.remove('active');
         signupCard.classList.add('active');
-        clearAlerts();
+        clearAllErrors();
     });
 
     switchToLogin.addEventListener('click', (e) => {
         e.preventDefault();
         signupCard.classList.remove('active');
         loginCard.classList.add('active');
-        clearAlerts();
+        clearAllErrors();
     });
 
     // Password visibility toggles
@@ -142,10 +202,10 @@ if (loginCard && signupCard && signinForm && signupForm) {
         toggle.addEventListener('click', () => {
             const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
             input.setAttribute('type', type);
-            
+
             const eyeIcon = toggle.querySelector('.eye-icon');
             const eyeOffIcon = toggle.querySelector('.eye-off-icon');
-            
+
             if (type === 'password') {
                 eyeIcon.style.display = 'block';
                 eyeOffIcon.style.display = 'none';
@@ -160,26 +220,28 @@ if (loginCard && signupCard && signinForm && signupForm) {
     setupPasswordToggle(signupPasswordToggle, signupPasswordInput);
     setupPasswordToggle(confirmPasswordToggle, confirmPasswordInput);
 
-    function clearAlerts() {
-        alertContainer.innerHTML = '';
-    }
-
     // Login form submission
     signinForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        clearAllErrors();
 
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
+        const submitBtn = signinForm.querySelector('.sign-in-btn');
+
+        setLoadingState(submitBtn, true);
 
         // Use signIn function which handles admin check internally
         const result = await signIn(email, password);
+
+        setLoadingState(submitBtn, false);
 
         if (result.success) {
             // Check if admin login
             if (result.isAdmin) {
                 sessionStorage.setItem('adminLoggedIn', 'true');
                 sessionStorage.setItem('adminEmail', email);
-                
+
                 showSuccessToast('Admin login successful! Redirecting...');
                 setTimeout(() => {
                     window.location.href = 'admin-dashboard.html?admin=true';
@@ -187,76 +249,91 @@ if (loginCard && signupCard && signinForm && signupForm) {
             } else {
                 // Regular user login
                 showSuccessToast('Login successful! Redirecting...');
-                
+
                 // Check for redirect URL in query parameters
                 const urlParams = new URLSearchParams(window.location.search);
                 const redirectUrl = urlParams.get('redirect');
-                
+
                 setTimeout(() => {
                     window.location.href = redirectUrl || 'index.html';
                 }, 1000);
             }
         } else {
-            // Handle errors - signIn already provides formatted error messages
-            let errorMessage = result.error || 'Login Failed! Please Check Your Credentials.';
-            
-            // Additional error message formatting for better UX
+            // Handle errors with inline validation
             if (result.error && result.error.includes('auth/invalid-credential')) {
-                errorMessage = 'Email Not Found! Please Sign Up';
+                showInputError('loginEmail', 'Incorrect Email or Password');
+                showInputError('loginPassword', 'Incorrect Email or Password');
             } else if (result.error && result.error.includes('auth/user-not-found')) {
-                errorMessage = 'Email Not Found! Please Sign Up';
+                showInputError('loginEmail', 'Email Not Found! Please Sign Up');
             } else if (result.error && result.error.includes('auth/wrong-password')) {
-                errorMessage = 'Incorrect Password! Please Try Again.';
+                showInputError('loginPassword', 'Incorrect Password! Please Try Again.');
             } else if (result.error && result.error.includes('auth/invalid-email')) {
-                errorMessage = 'Invalid Email Format! Please Check Your Email.';
+                showInputError('loginEmail', 'Invalid Email Format!');
+            } else {
+                showErrorToast(result.error || 'Login Failed! Please Check Your Credentials.');
             }
-            
-            showErrorToast(errorMessage);
         }
     });
 
     // Signup form submission
     signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        clearAllErrors();
 
         const name = document.getElementById('signupName').value;
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const submitBtn = signupForm.querySelector('.sign-up-btn'); // Assuming a class 'sign-up-btn' for signup button
+
+        let hasError = false;
 
         // Validation
         if (!name || name.trim() === '') {
-            showErrorToast('Please enter your name!');
-            return;
+            showInputError('signupName', 'Please enter your name!');
+            hasError = true;
         }
 
         if (password !== confirmPassword) {
-            showErrorToast('Passwords do not match!');
-            return;
+            showInputError('confirmPassword', 'Passwords do not match!');
+            hasError = true;
         }
 
         if (password.length < 6) {
-            showErrorToast('Password must be at least 6 characters long!');
-            return;
+            showInputError('signupPassword', 'Password must be at least 6 characters long!');
+            hasError = true;
         }
+
+        if (hasError) return;
+
+        setLoadingState(submitBtn, true);
 
         // Use signUp function which handles Firebase errors
         const result = await signUp(email, password, name);
 
+        setLoadingState(submitBtn, false);
+
         if (result.success) {
             showSuccessToast('Account created successfully! Redirecting...');
-            
+
             // Check for redirect URL in query parameters
             const urlParams = new URLSearchParams(window.location.search);
             const redirectUrl = urlParams.get('redirect');
-            
+
             setTimeout(() => {
                 window.location.href = redirectUrl || 'index.html';
             }, 2000);
         } else {
-            // signUp already provides formatted error messages
-            showErrorToast(result.error || 'Sign up failed. Please try again.');
+            // Handle Firebase errors inline
+            if (result.error && result.error.includes('already registered')) {
+                showInputError('signupEmail', 'This email is already registered.');
+            } else if (result.error && result.error.includes('Invalid email')) {
+                showInputError('signupEmail', 'Invalid email format.');
+            } else if (result.error && result.error.includes('Password is too weak')) {
+                showInputError('signupPassword', 'Password is too weak.');
+            } else {
+                showErrorToast(result.error || 'Sign up failed. Please try again.');
+            }
         }
     });
 }
-

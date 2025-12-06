@@ -128,6 +128,12 @@ export function renderTopHeader(title = 'Dashboard', searchPlaceholder = 'Search
         <header class="top-header">
             <h1 class="header-title">${title}</h1>
             <div class="header-actions">
+                <button class="mobile-search-btn" id="mobileSearchBtn" aria-label="Toggle Search">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
                 <div class="search-bar">
                     <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,10 +160,28 @@ export function renderTopHeader(title = 'Dashboard', searchPlaceholder = 'Search
  * Renders the mobile menu toggle button
  */
 export function renderMobileMenuToggle() {
-    const mobileToggleContainer = document.getElementById('mobile-menu-toggle-container');
+    let mobileToggleContainer = document.getElementById('mobile-menu-toggle-container');
     if (!mobileToggleContainer) {
-        console.error('Mobile menu toggle container not found. Please add a div with id="mobile-menu-toggle-container" to your page.');
-        return;
+        mobileToggleContainer = document.createElement('div');
+        mobileToggleContainer.id = 'mobile-menu-toggle-container';
+
+        // Prioritize appending to top-header-container for reliable relative positioning
+        const headerContainer = document.getElementById('top-header-container');
+        const topHeader = document.querySelector('.top-header'); // Fallback check
+
+        if (headerContainer) {
+            if (getComputedStyle(headerContainer).position === 'static') {
+                headerContainer.style.position = 'relative';
+            }
+            headerContainer.appendChild(mobileToggleContainer);
+        } else if (topHeader) {
+            if (getComputedStyle(topHeader).position === 'static') {
+                topHeader.style.position = 'relative';
+            }
+            topHeader.appendChild(mobileToggleContainer);
+        } else {
+            document.body.appendChild(mobileToggleContainer);
+        }
     }
 
     const mobileToggleHTML = `
@@ -178,8 +202,18 @@ export function renderMobileMenuToggle() {
     const sidebar = document.getElementById('sidebar');
 
     if (mobileMenuToggle && sidebar) {
-        mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling to document
             sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('open') &&
+                !sidebar.contains(e.target) &&
+                !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
         });
     }
 }
@@ -354,9 +388,21 @@ function setupProfileModalEvents() {
  */
 function setupGlobalSearch() {
     const searchInput = document.getElementById('searchInput');
-    const searchIcon = document.querySelector('.search-icon');
+    const searchIcon = document.querySelector('.search-bar .search-icon'); // Target icon INSIDE search bar
+    const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+    const searchBar = document.querySelector('.search-bar');
 
     if (!searchInput) return;
+
+    // Mobile toggle
+    if (mobileSearchBtn && searchBar) {
+        mobileSearchBtn.addEventListener('click', () => {
+            searchBar.classList.toggle('show-mobile');
+            if (searchBar.classList.contains('show-mobile')) {
+                searchInput.focus();
+            }
+        });
+    }
 
     const performSearch = () => {
         const query = searchInput.value.trim();

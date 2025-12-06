@@ -298,10 +298,7 @@ function initializeHistoryPage() {
     // Initialize with logged-out state first
     initializeLoggedOutState();
 
-    // Mobile menu toggle
-    mobileMenuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-    });
+
 
     // User profile click - redirect to login if not logged in
     userProfile.addEventListener('click', () => {

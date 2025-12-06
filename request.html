@@ -140,7 +140,8 @@
                                                 Available</div>
                                         </div>
                                         <div class="submenu-item">
-                                            <div class="submenu-link" data-value="" data-type="availability">All</div>
+                                            <div class="submenu-link" data-value="All" data-type="availability">All
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -154,296 +155,302 @@
                         <div class="empty-state">
                             <p>Select filters and click "Search" to find available donors</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+                        <!-- Profile Modal -->
+                        <div id="profile-modal-container"></div>
 
-    <!-- Profile Modal -->
-    <div id="profile-modal-container"></div>
+                        <script type="module">
+                            import { getCurrentUser, onAuthStateChange, logOut } from './js/login.js';
+                            import { createBloodRequest, getAllDonors, getFilteredDonors } from './js/donor.js';
+                            import { showSuccessToast, showErrorToast } from './js/toast.js';
+                            import { initializeDashboardComponents } from './js/components.js';
 
-    <script type="module">
-        import { getAllDonors, getFilteredDonors } from './js/donor.js';
-        import { onAuthStateChange, getCurrentUser, logOut } from './js/login.js';
-        import { createBloodRequest } from './js/request.js';
-        import { showSuccessToast, showErrorToast } from './js/toast.js';
-        import { initializeDashboardComponents } from './js/components.js';
+                            const searchBtn = document.getElementById('searchBtn');
+                            const donorsContainer = document.getElementById('donorsContainer');
 
-        const searchBtn = document.getElementById('searchBtn');
-        const donorsContainer = document.getElementById('donorsContainer');
+                            // Initialize dashboard components
+                            initializeDashboardComponents({
+                                activePage: 'request',
+                                headerTitle: 'Request Blood',
+                                searchPlaceholder: 'Search donors...'
+                            });
 
-        // Initialize dashboard components
-        initializeDashboardComponents({
-            activePage: 'request',
-            headerTitle: 'Request Blood',
-            searchPlaceholder: 'Search donors...'
-        });
-
-        // Select DOM elements for Profile Logic
-        const userNameSpan = document.getElementById('userName');
-        const userRole = document.getElementById('userRole');
-        const userAvatar = document.getElementById('userAvatar');
-        const userProfile = document.getElementById('userProfile');
-        const profileModal = document.getElementById('profileModal');
-        const closeProfileModal = document.getElementById('closeProfileModal');
-        const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+                            // Select DOM elements for Profile Logic
+                            const userNameSpan = document.getElementById('userName');
+                            const userRole = document.getElementById('userRole');
+                            const userAvatar = document.getElementById('userAvatar');
+                            const userProfile = document.getElementById('userProfile');
+                            const profileModal = document.getElementById('profileModal');
+                            const closeProfileModal = document.getElementById('closeProfileModal');
+                            const profileLogoutBtn = document.getElementById('profileLogoutBtn');
 
 
-        if (profileLogoutBtn) {
-            profileLogoutBtn.addEventListener('click', async () => {
-                const result = await logOut();
-                if (result.success) {
-                    sessionStorage.removeItem('adminLoggedIn');
-                    sessionStorage.removeItem('adminEmail');
-                    profileModal.style.display = 'none';
-                    showSuccessToast('Logged out successfully!');
-                    // onAuthStateChange will handle redirect
-                }
-            });
-        }
+                            if (profileLogoutBtn) {
+                                profileLogoutBtn.addEventListener('click', async () => {
+                                    const result = await logOut();
+                                    if (result.success) {
+                                        sessionStorage.removeItem('adminLoggedIn');
+                                        sessionStorage.removeItem('adminEmail');
+                                        profileModal.style.display = 'none';
+                                        showSuccessToast('Logged out successfully!');
+                                        // onAuthStateChange will handle redirect
+                                    }
+                                });
+                            }
 
-        // Check auth state
-        onAuthStateChange((user) => {
-            if (!user) {
-                window.location.href = 'login.html?redirect=request.html';
-            } else {
-                // Update Sidebar UI
-                const displayName = user.displayName || user.email || 'User';
-                if (userNameSpan) userNameSpan.textContent = displayName;
-                if (userRole) userRole.textContent = 'User';
+                            // Check auth state
+                            onAuthStateChange((user) => {
+                                if (!user) {
+                                    window.location.href = 'login.html?redirect=request.html';
+                                } else {
+                                    // Update Sidebar UI
+                                    const displayName = user.displayName || user.email || 'User';
+                                    if (userNameSpan) userNameSpan.textContent = displayName;
+                                    if (userRole) userRole.textContent = 'User';
 
-                if (userAvatar) {
-                    if (displayName && displayName !== 'User') {
-                        userAvatar.innerHTML = `<span style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
-                    } else {
-                        userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
-                    }
-                }
+                                    if (userAvatar) {
+                                        if (displayName && displayName !== 'User') {
+                                            userAvatar.innerHTML = `<span
+                            style="font-size: 16px; font-weight: 700;">${displayName.charAt(0).toUpperCase()}</span>`;
+                                        } else {
+                                            userAvatar.innerHTML = '<span style="font-size: 16px; font-weight: 700;">U</span>';
+                                        }
+                                    }
 
-                if (userProfile) userProfile.style.cursor = 'pointer';
-            }
-        });
+                                    if (userProfile) userProfile.style.cursor = 'pointer';
+                                }
+                            });
 
-        function displayDonors(donors) {
-            if (donors.length === 0) {
-                donorsContainer.innerHTML = `
-                    <div class="empty-state">
-                        <p>No donors found matching your criteria.</p>
-                    </div>
-                `;
-                return;
-            }
+                            function displayDonors(donors) {
+                                if (donors.length === 0) {
+                                    donorsContainer.innerHTML = `
+                        <div class="empty-state">
+                            <p>No donors found matching your criteria.</p>
+                        </div>
+                        `;
+                                    return;
+                                }
 
-            let html = `
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Blood Group</th>
-                                <th>Contact</th>
-                                <th>Availability</th>
-                                <th>Medical Note</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
+                                let html = `
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Blood Group</th>
+                                        <th>Contact</th>
+                                        <th>Availability</th>
+                                        <th>Medical Note</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    `;
 
-            donors.forEach(donor => {
-                html += `
-                    <tr>
-                        <td>${donor.fullName}</td>
-                        <td>${donor.age}</td>
-                        <td>${donor.gender}</td>
-                        <td><strong>${donor.bloodGroup}</strong></td>
-                        <td>${donor.contact}</td>
-                        <td><span style="color: ${donor.availability === 'Yes' ? '#28a745' : '#dc3545'}">${donor.availability}</span></td>
-                        <td>${donor.medicalNote || '-'}</td>
-                        <td>
-                            ${donor.availability === 'Yes' ?
-                        `<button class="btn btn-primary btn-sm request-blood-btn" data-blood-group="${donor.bloodGroup}" data-donor-id="${donor.id}" data-donor-name="${donor.fullName}" style="padding: 6px 12px; font-size: 14px;">Request Blood</button>`
-                        : '<span style="color: var(--text-secondary);">-</span>'
-                    }
-                        </td>
-                    </tr>
-                `;
-            });
+                                donors.forEach(donor => {
+                                    const availabilityClass = donor.availability === 'Yes' ? 'text-success' :
+                                        'text-danger';
+                                    const actionHtml = donor.availability === 'Yes'
+                                        ? `<button class="btn btn-primary btn-sm request-blood-btn"
+                                        data-blood-group="${donor.bloodGroup}" data-donor-id="${donor.id}"
+                                        data-donor-name="${donor.fullName}"
+                                        style="padding: 6px 12px; font-size: 14px;">Request Blood</button>`
+                                        : '<span style="color: var(--text-secondary);">-</span>';
 
-            html += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
+                                    html += `
+                                    <tr>
+                                        <td data-label="Name">${donor.fullName}</td>
+                                        <td data-label="Age">${donor.age}</td>
+                                        <td data-label="Gender">${donor.gender}</td>
+                                        <td data-label="Blood Group"><strong>${donor.bloodGroup}</strong></td>
+                                        <td data-label="Contact">${donor.contact}</td>
+                                        <td data-label="Availability"><span
+                                                class="${availabilityClass}">${donor.availability}</span></td>
+                                        <td data-label="Medical Note">${donor.medicalNote || '-'}</td>
+                                        <td data-label="Action">
+                                            ${actionHtml}
+                                        </td>
+                                    </tr>
+                                    `;
+                                });
 
-            donorsContainer.innerHTML = html;
+                                html += `
+                                    </tbody>
+                            </table>
+                        </div>
+                        `;
 
-            // Add event listeners to request blood buttons
-            const requestButtons = donorsContainer.querySelectorAll('.request-blood-btn');
-            requestButtons.forEach(button => {
-                button.addEventListener('click', async () => {
-                    const bloodGroup = button.getAttribute('data-blood-group');
-                    const donorId = button.getAttribute('data-donor-id');
-                    const donorName = button.getAttribute('data-donor-name');
-                    const user = getCurrentUser();
+                                donorsContainer.innerHTML = html;
 
-                    if (!user || !user.email) {
-                        showErrorToast('Please log in to request blood.');
-                        return;
-                    }
+                                // Add event listeners to request blood buttons
+                                const requestButtons = donorsContainer.querySelectorAll('.request-blood-btn');
+                                requestButtons.forEach(button => {
+                                    button.addEventListener('click', async () => {
+                                        const bloodGroup = button.getAttribute('data-blood-group');
+                                        const donorId = button.getAttribute('data-donor-id');
+                                        const donorName = button.getAttribute('data-donor-name');
+                                        const user = getCurrentUser();
 
-                    // Disable button to prevent multiple clicks
-                    button.disabled = true;
-                    button.textContent = 'Requesting...';
+                                        if (!user || !user.email) {
+                                            showErrorToast('Please log in to request blood.');
+                                            return;
+                                        }
 
-                    // Get user's display name (full name) from Firebase Auth
-                    const fullName = user.displayName || user.email;
-                    const result = await createBloodRequest(user.email, bloodGroup, fullName, donorId, donorName);
+                                        // Disable button to prevent multiple clicks
+                                        button.disabled = true;
+                                        button.textContent = 'Requesting...';
 
-                    if (result.success) {
-                        showSuccessToast(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`);
-                        button.textContent = 'Requested';
-                        button.disabled = true;
-                        button.style.opacity = '0.6';
-                    } else {
-                        showErrorToast('Failed to submit request. Please try again.');
-                        button.disabled = false;
-                        button.textContent = 'Request Blood';
-                    }
-                });
-            });
-        }
+                                        // Get user's display name (full name) from Firebase Auth
+                                        const fullName = user.displayName || user.email;
+                                        const result = await createBloodRequest(user.email, bloodGroup, fullName, donorId, donorName);
 
-        // Custom Dropdown Logic
-        const submenuLinks = document.querySelectorAll('.submenu-link');
+                                        if (result.success) {
+                                            showSuccessToast(`Blood request for ${bloodGroup} from ${donorName} submitted successfully!`);
+                                            button.textContent = 'Requested';
+                                            button.disabled = true;
+                                            button.style.opacity = '0.6';
+                                        } else {
+                                            showErrorToast('Failed to submit request. Please try again.');
+                                            button.disabled = false;
+                                            button.textContent = 'Request Blood';
+                                        }
+                                    });
+                                });
+                            }
 
-        // Note: Dropdown visibility is now handled by CSS hover state in style.css
+                            // Custom Dropdown Logic
+                            const submenuLinks = document.querySelectorAll('.submenu-link');
 
-        submenuLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent bubbling to document
-                const value = link.getAttribute('data-value');
-                const type = link.getAttribute('data-type');
-                const text = link.textContent;
+                            // Note: Dropdown visibility is now handled by CSS hover state in style.css
 
-                if (type === 'blood') {
-                    document.getElementById('bloodGroupFilter').value = value;
-                    document.getElementById('bloodGroupLabel').textContent = text;
-                } else if (type === 'availability') {
-                    document.getElementById('availabilityFilter').value = value;
-                    document.getElementById('availabilityLabel').textContent = text;
-                }
-                // Close the dropdown after selection (handled by moving mouse away in hover mode)
-            });
-        });
+                            submenuLinks.forEach(link => {
+                                link.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation(); // Prevent bubbling to document
+                                    const value = link.getAttribute('data-value');
+                                    const type = link.getAttribute('data-type');
+                                    const text = link.textContent;
 
-        searchBtn.addEventListener('click', async () => {
-            const bloodGroup = document.getElementById('bloodGroupFilter').value;
-            const availability = document.getElementById('availabilityFilter').value || 'Yes';
+                                    if (type === 'blood') {
+                                        document.getElementById('bloodGroupFilter').value = value;
+                                        document.getElementById('bloodGroupLabel').textContent = text;
+                                    } else if (type === 'availability') {
+                                        document.getElementById('availabilityFilter').value = value;
+                                        document.getElementById('availabilityLabel').textContent = text;
+                                    }
+                                    // Close the dropdown after selection (handled by moving mouse away in hover mode)
+                                });
+                            });
 
-            // Show loader
-            donorsContainer.innerHTML = `
-                <div class="loader-container">
-                    <span class="loader"></span>
-                    <span class="loader-text">Searching for available donors...</span>
-                </div>
-            `;
+                            searchBtn.addEventListener('click', async () => {
+                                const bloodGroup = document.getElementById('bloodGroupFilter').value;
+                                let availability = document.getElementById('availabilityFilter').value;
 
-            // Add a small delay to make the loader visible (optional, but good for UX if fetch is too fast)
-            await new Promise(resolve => setTimeout(resolve, 500));
+                                // Default to 'Yes' if empty, but allow 'All' to override
+                                if (!availability) availability = 'Yes';
+                                if (availability === 'All') availability = null;
 
-            if (!bloodGroup) {
-                // Get all available donors
-                const result = await getAllDonors();
-                if (result.success) {
-                    const filtered = availability ?
-                        result.donors.filter(d => d.availability === availability) :
-                        result.donors;
-                    displayDonors(filtered);
-                } else {
-                    showErrorToast('Failed to fetch donors. Please try again.');
-                    donorsContainer.innerHTML = `
+                                // Show loader
+                                donorsContainer.innerHTML = `
+                        <div class="loader-container">
+                            <span class="loader"></span>
+                            <span class="loader-text">Searching for available donors...</span>
+                        </div>
+                        `;
+
+                                // Add a small delay to make the loader visible (optional, but good for UX if fetch is too fast)
+                                await new Promise(resolve => setTimeout(resolve, 500));
+
+                                if (!bloodGroup) {
+                                    // Get all available donors
+                                    const result = await getAllDonors();
+                                    if (result.success) {
+                                        const filtered = availability ?
+                                            result.donors.filter(d => d.availability === availability) :
+                                            result.donors;
+                                        displayDonors(filtered);
+                                    } else {
+                                        showErrorToast('Failed to fetch donors. Please try again.');
+                                        donorsContainer.innerHTML = `
                         <div class="empty-state">
                             <p>Failed to fetch donors. Please try again.</p>
                         </div>
-                    `;
-                }
-            } else {
-                // Get filtered donors
-                const result = await getFilteredDonors(bloodGroup, availability);
-                if (result.success) {
-                    displayDonors(result.donors);
-                } else {
-                    showErrorToast('Failed to fetch donors. Please try again.');
-                    donorsContainer.innerHTML = `
+                        `;
+                                    }
+
+                                } else {
+                                    const result = await getFilteredDonors(bloodGroup, availability);
+                                    if (result.success) {
+                                        displayDonors(result.donors);
+                                    } else {
+                                        showErrorToast('Failed to fetch donors. Please try again.');
+                                        donorsContainer.innerHTML = `
                         <div class="empty-state">
                             <p>Failed to fetch donors. Please try again.</p>
                         </div>
-                    `;
-                }
-            }
-        });
+                        `;
+                                    }
+                                }
 
-        // Handle URL Search Query
-        setTimeout(() => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('q');
+                            });
 
-            if (searchQuery) {
-                // Populate Global Search Input
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    searchInput.value = searchQuery;
-                }
+                            // Handle URL Search Query
+                            setTimeout(() => {
+                                const urlParams = new URLSearchParams(window.location.search);
+                                const searchQuery = urlParams.get('q');
 
-                // Check if query matches a blood group
-                const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-                const normalizedQuery = searchQuery.toUpperCase().trim();
+                                if (searchQuery) {
+                                    // Populate Global Search Input
+                                    const searchInput = document.getElementById('searchInput');
+                                    if (searchInput) {
+                                        searchInput.value = searchQuery;
+                                    }
 
-                if (bloodGroups.includes(normalizedQuery)) {
-                    // Set Blood Group Filter
-                    document.getElementById('bloodGroupFilter').value = normalizedQuery;
-                    document.getElementById('bloodGroupLabel').textContent = normalizedQuery;
+                                    // Check if query matches a blood group
+                                    const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                                    const normalizedQuery = searchQuery.toUpperCase().trim();
 
-                    // Trigger Search
-                    searchBtn.click();
-                } else {
-                    // Perform Generic Text Search
-                    donorsContainer.innerHTML = `
+                                    if (bloodGroups.includes(normalizedQuery)) {
+                                        // Set Blood Group Filter
+                                        document.getElementById('bloodGroupFilter').value = normalizedQuery;
+                                        document.getElementById('bloodGroupLabel').textContent = normalizedQuery;
+
+                                        // Trigger Search
+                                        searchBtn.click();
+                                    } else {
+                                        // Perform Generic Text Search
+                                        donorsContainer.innerHTML = `
                         <div class="loader-container">
                             <span class="loader"></span>
                             <span class="loader-text">Searching for "${searchQuery}"...</span>
                         </div>
-                    `;
+                        `;
 
-                    getAllDonors().then(result => {
-                        if (result.success) {
-                            const lowerQuery = searchQuery.toLowerCase();
-                            // Filter donors by Name, Contact, or Medical Notes
-                            const filtered = result.donors.filter(d =>
-                                (d.fullName && d.fullName.toLowerCase().includes(lowerQuery)) ||
-                                (d.contact && d.contact.includes(searchQuery)) ||
-                                (d.medicalNote && d.medicalNote.toLowerCase().includes(lowerQuery))
-                            );
+                                        getAllDonors().then(result => {
+                                            if (result.success) {
+                                                const lowerQuery = searchQuery.toLowerCase();
+                                                // Filter donors by Name, Contact, or Medical Notes
+                                                const filtered = result.donors.filter(d =>
+                                                    (d.fullName && d.fullName.toLowerCase().includes(lowerQuery)) ||
+                                                    (d.contact && d.contact.includes(searchQuery)) ||
+                                                    (d.medicalNote && d.medicalNote.toLowerCase().includes(lowerQuery))
+                                                );
 
-                            displayDonors(filtered);
-                        } else {
-                            showErrorToast('Failed to fetch donors.');
-                            donorsContainer.innerHTML = `
-                                <div class="empty-state">
-                                    <p>Failed to fetch donors. Please try again.</p>
-                                </div>
-                            `;
-                        }
-                    });
-                }
-            }
-        }, 500); // Small delay to ensure components are rendered
-    </script>
+                                                displayDonors(filtered);
+                                            } else {
+                                                showErrorToast('Failed to fetch donors.');
+                                                donorsContainer.innerHTML = `
+                        <div class="empty-state">
+                            <p>Failed to fetch donors. Please try again.</p>
+                        </div>
+                        `;
+                                            }
+                                        });
+                                    }
+                                }
+                            }, 500); // Small delay to ensure components are rendered
+                        </script>
 </body>
 
 </html>

@@ -172,67 +172,9 @@
     </div>
 
     <!-- Profile Modal -->
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Profile</h2>
-                <button class="modal-close" id="closeProfileModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="profile-content">
-                    <div class="profile-avatar-section">
-                        <div class="profile-avatar-large" id="profileAvatarLarge">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                        </div>
-                        <h3 id="profileName">User</h3>
-                        <p id="profileEmail" class="profile-email">user@example.com</p>
-                    </div>
 
-                    <div class="profile-info-section">
-                        <div class="profile-info-item">
-                            <label>Full Name</label>
-                            <div class="profile-info-value" id="profileDisplayName">-</div>
-                        </div>
-                        <div class="profile-info-item">
-                            <label>Email</label>
-                            <div class="profile-info-value" id="profileEmailValue">-</div>
-                        </div>
-                        <div class="profile-info-item">
-                            <label>Role</label>
-                            <div class="profile-info-value">User</div>
-                        </div>
-                        <div class="profile-info-item">
-                            <label>Member Since</label>
-                            <div class="profile-info-value" id="profileMemberSince">-</div>
-                        </div>
-                    </div>
 
-                    <div class="profile-actions">
-                        <button class="btn btn-primary btn-block" id="editProfileBtn">Edit Profile</button>
-                        <button class="btn btn-secondary btn-block" id="profileLogoutBtn">Logout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-    </button>
-
-    <div id="mobile-menu-toggle-container"></div>
-    <!-- Profile Modal -->
+    <!-- Profile Modal Container is populated by components.js -->
     <div id="profile-modal-container"></div>
 
     <script type="module">
@@ -253,14 +195,9 @@
         const userAvatar = document.getElementById('userAvatar');
         const userProfile = document.getElementById('userProfile');
         const logoutBtn = document.getElementById('logoutBtn');
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const sidebar = document.getElementById('sidebar');
         const heroTitle = document.getElementById('heroTitle');
 
         let isLoggedIn = false;
-
-        // Initialize dashboard components
-
 
         // Initialize UI to logged-out state
         function initializeLoggedOutState() {
@@ -280,11 +217,6 @@
 
         // Initialize with logged-out state first
         initializeLoggedOutState();
-
-        // Mobile menu toggle
-        mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
 
         // Open profile modal when clicking profile
         const profileModal = document.getElementById('profileModal');

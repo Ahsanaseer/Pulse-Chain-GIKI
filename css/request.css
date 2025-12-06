@@ -23,6 +23,7 @@
 }
 
 /* Table Styles */
+/* Table Styles - HANDLED BY STYLE.CSS RESPONSIVE TABLE
 .table-container {
     overflow-x: auto;
     margin-top: 20px;
@@ -58,6 +59,7 @@ table tr:hover {
 table tr:last-child td {
     border-bottom: none;
 }
+*/
 
 /* Empty State */
 .empty-state {
@@ -107,10 +109,7 @@ table tr:last-child td {
         font-size: 14px;
     }
 
-    table th,
-    table td {
-        padding: 8px;
-    }
+
 
     .nav-bar {
         flex-direction: column;
@@ -126,4 +125,3 @@ table tr:last-child td {
         width: 100%;
     }
 }
-

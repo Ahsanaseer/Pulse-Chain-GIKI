@@ -289,10 +289,7 @@ async function handleSearch() {
 function initializeHospitalDashboard() {
 
 
-    // Mobile menu toggle
-    mobileMenuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-    });
+
 
     // User profile click - redirect to login if not logged in
     userProfile.addEventListener('click', () => {

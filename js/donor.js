@@ -110,3 +110,23 @@ export async function getUserDonations(userEmail) {
     }
 }
 
+
+/**
+ * Create a blood request
+ */
+export async function createBloodRequest(userEmail, bloodGroup, requesterName, donorId, donorName) {
+    try {
+        const docRef = await addDoc(collection(db, 'requests'), {
+            requesterEmail: userEmail,
+            requesterName: requesterName,
+            bloodGroup: bloodGroup,
+            donorId: donorId,
+            donorName: donorName,
+            status: 'Pending',
+            timestamp: new Date().toISOString()
+        });
+        return { success: true, id: docRef.id };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+}

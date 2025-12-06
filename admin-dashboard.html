@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,13 @@
     <link rel="icon" type="image/png" href="PICS/Pulse Chain GIKI.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -20,49 +23,53 @@
                 <img src="PICS/Pulse_Chain_GIKI Logo Icon.png" alt="Pulse Chain GIKI Logo" class="logo-icon-img">
                 <div class="logo-text">Pulse Chain GIKI</div>
             </div>
-            
+
             <nav class="sidebar-menu">
                 <a href="#" class="menu-item active" data-page="dashboard">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
                         </svg>
                     </span>
                     <span class="menu-text">Dashboard</span>
                 </a>
                 <a href="#" class="menu-item" data-page="donors">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
                     </span>
                     <span class="menu-text">Donors</span>
                 </a>
                 <a href="#" class="menu-item" data-page="requests">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
                         </svg>
                     </span>
                     <span class="menu-text">Requests</span>
                 </a>
                 <a href="#" class="menu-item" data-page="analytics">
                     <span class="menu-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="20" x2="18" y2="10"/>
-                            <line x1="12" y1="20" x2="12" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
                         </svg>
                     </span>
                     <span class="menu-text">Analytics</span>
                 </a>
             </nav>
-            
+
             <div class="user-profile-section">
                 <div class="user-profile" id="userProfile">
                     <div class="user-avatar">A</div>
@@ -78,27 +85,46 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
                 <h1 class="header-title">Admin Dashboard</h1>
                 <div class="header-actions">
+                    <button class="mobile-search-btn" id="mobileSearchBtn" aria-label="Toggle Search">
+                        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
                     <div class="search-bar">
                         <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                         <input type="text" placeholder="Search donors, requests..." id="searchInput">
                     </div>
                     <button class="btn-connect" id="refreshBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
-                            <polyline points="23 4 23 10 17 10"/>
-                            <polyline points="1 20 1 14 7 14"/>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right: 6px;">
+                            <polyline points="23 4 23 10 17 10" />
+                            <polyline points="1 20 1 14 7 14" />
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
                         </svg>
                         Refresh
                     </button>
                     <button class="logout-icon-btn" id="logoutBtn" title="Logout">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
                         </svg>
                     </button>
                 </div>
@@ -132,8 +158,10 @@
                     <div class="hero-card">
                         <div class="hero-label">PULSE CHAIN GIKI</div>
                         <h2 class="hero-title">Save Lives, Donate Blood</h2>
-                        <p class="hero-description">Manage donors, track requests, and ensure timely blood availability across campus. Every donation counts in saving lives.</p>
-                        <button class="hero-button" onclick="document.getElementById('refreshBtn').click()">Refresh Data</button>
+                        <p class="hero-description">Manage donors, track requests, and ensure timely blood availability
+                            across campus. Every donation counts in saving lives.</p>
+                        <button class="hero-button" onclick="document.getElementById('refreshBtn').click()">Refresh
+                            Data</button>
                     </div>
 
                     <!-- Donors Section -->
@@ -149,15 +177,17 @@
                         <div id="donorsContainer">
                             <div class="empty-state">
                                 <div class="empty-state-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="2" x2="12" y2="6"/>
-                                        <line x1="12" y1="18" x2="12" y2="22"/>
-                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
-                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-                                        <line x1="2" y1="12" x2="6" y2="12"/>
-                                        <line x1="18" y1="12" x2="22" y2="12"/>
-                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
-                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="12" y1="2" x2="12" y2="6" />
+                                        <line x1="12" y1="18" x2="12" y2="22" />
+                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+                                        <line x1="2" y1="12" x2="6" y2="12" />
+                                        <line x1="18" y1="12" x2="22" y2="12" />
+                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
                                     </svg>
                                 </div>
                                 <div class="empty-state-text">Loading donors...</div>
@@ -177,15 +207,17 @@
                         <div id="requestsContainer">
                             <div class="empty-state">
                                 <div class="empty-state-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="2" x2="12" y2="6"/>
-                                        <line x1="12" y1="18" x2="12" y2="22"/>
-                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
-                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-                                        <line x1="2" y1="12" x2="6" y2="12"/>
-                                        <line x1="18" y1="12" x2="22" y2="12"/>
-                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
-                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="12" y1="2" x2="12" y2="6" />
+                                        <line x1="12" y1="18" x2="12" y2="22" />
+                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+                                        <line x1="2" y1="12" x2="6" y2="12" />
+                                        <line x1="18" y1="12" x2="22" y2="12" />
+                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
                                     </svg>
                                 </div>
                                 <div class="empty-state-text">Loading requests...</div>
@@ -200,48 +232,63 @@
                         <div class="section-header">
                             <h2 class="section-title">Analytics & Insights</h2>
                         </div>
-                        
+
                         <!-- Chart Grid -->
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 24px;">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 24px;">
                             <!-- Blood Group Distribution -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Blood Group Distribution</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Blood Group Distribution</h3>
                                 <canvas id="bloodGroupChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Gender Distribution -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Gender Distribution</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Gender Distribution</h3>
                                 <canvas id="genderChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Availability Status -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Availability Status</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Availability Status</h3>
                                 <canvas id="availabilityChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Donations Over Time -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Donations Over Time</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Donations Over Time</h3>
                                 <canvas id="donationsOverTimeChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Requests Over Time -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Blood Requests Over Time</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Blood Requests Over Time</h3>
                                 <canvas id="requestsOverTimeChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Blood Group Requests -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Requests by Blood Group</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Requests by Blood Group</h3>
                                 <canvas id="requestsByBloodGroupChart" style="max-height: 300px;"></canvas>
                             </div>
 
                             <!-- Monthly Trends -->
                             <div class="stat-card" style="padding: 24px;">
-                                <h3 style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">Monthly Trends</h3>
+                                <h3
+                                    style="margin: 0 0 20px 0; color: var(--text-primary); font-size: 18px; font-weight: 600;">
+                                    Monthly Trends</h3>
                                 <canvas id="monthlyTrendsChart" style="max-height: 300px;"></canvas>
                             </div>
                         </div>
@@ -251,14 +298,7 @@
         </main>
     </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-    </button>
+
 
     <!-- Confirmation Modal -->
     <div id="confirmModal" class="modal">
@@ -268,7 +308,8 @@
                 <button class="modal-close" id="closeConfirmModal">&times;</button>
             </div>
             <div class="modal-body">
-                <p id="confirmModalMessage" style="color: var(--text-primary); margin-bottom: 24px; line-height: 1.6;"></p>
+                <p id="confirmModalMessage" style="color: var(--text-primary); margin-bottom: 24px; line-height: 1.6;">
+                </p>
                 <div style="display: flex; gap: 12px; justify-content: flex-end;">
                     <button class="btn btn-secondary" id="confirmModalCancel" style="min-width: 100px;">Cancel</button>
                     <button class="btn btn-primary" id="confirmModalConfirm" style="min-width: 100px;">Confirm</button>
@@ -290,11 +331,13 @@
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const sidebar = document.getElementById('sidebar');
         const searchInput = document.getElementById('searchInput');
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        const searchBar = document.querySelector('.search-bar');
         const headerTitle = document.querySelector('.header-title');
-        
+
         // Chart instances
         let charts = {};
-        
+
         // Confirmation modal elements
         const confirmModal = document.getElementById('confirmModal');
         const confirmModalTitle = document.getElementById('confirmModalTitle');
@@ -302,16 +345,16 @@
         const confirmModalConfirm = document.getElementById('confirmModalConfirm');
         const confirmModalCancel = document.getElementById('confirmModalCancel');
         const closeConfirmModal = document.getElementById('closeConfirmModal');
-        
+
         // Confirmation modal promise resolver
         let confirmResolve = null;
-        
+
         // Custom confirm function
         function showConfirm(title, message, isDanger = false) {
             return new Promise((resolve) => {
                 confirmModalTitle.textContent = title;
                 confirmModalMessage.textContent = message;
-                
+
                 // Style confirm button based on action type
                 if (isDanger) {
                     confirmModalConfirm.className = 'btn';
@@ -324,12 +367,12 @@
                     confirmModalConfirm.style.color = '';
                     confirmModalConfirm.style.border = '';
                 }
-                
+
                 confirmModal.style.display = 'flex';
                 confirmResolve = resolve;
             });
         }
-        
+
         // Handle confirm button
         confirmModalConfirm.addEventListener('click', () => {
             if (confirmResolve) {
@@ -338,7 +381,7 @@
                 confirmResolve = null;
             }
         });
-        
+
         // Handle cancel button
         confirmModalCancel.addEventListener('click', () => {
             if (confirmResolve) {
@@ -347,7 +390,7 @@
                 confirmResolve = null;
             }
         });
-        
+
         // Handle close button
         closeConfirmModal.addEventListener('click', () => {
             if (confirmResolve) {
@@ -356,7 +399,7 @@
                 confirmResolve = null;
             }
         });
-        
+
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === confirmModal && confirmResolve) {
@@ -367,9 +410,30 @@
         });
 
         // Mobile menu toggle
-        mobileMenuToggle.addEventListener('click', () => {
+        // Mobile menu toggle
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             sidebar.classList.toggle('open');
         });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('open') &&
+                !sidebar.contains(e.target) &&
+                !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Mobile search toggle
+        if (mobileSearchBtn && searchBar) {
+            mobileSearchBtn.addEventListener('click', () => {
+                searchBar.classList.toggle('show-mobile');
+                if (searchBar.classList.contains('show-mobile')) {
+                    searchInput.focus();
+                }
+            });
+        }
 
         // Page navigation
         document.querySelectorAll('.menu-item[data-page]').forEach(item => {
@@ -377,7 +441,7 @@
                 e.preventDefault();
                 const page = item.getAttribute('data-page');
                 switchPage(page);
-                
+
                 // Update active menu item
                 document.querySelectorAll('.menu-item').forEach(mi => mi.classList.remove('active'));
                 item.classList.add('active');
@@ -387,17 +451,17 @@
         function switchPage(page) {
             // Hide all pages
             document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
-            
+
             // For donors and requests, show dashboard and scroll to section
             if (page === 'donors' || page === 'requests') {
                 const dashboardPage = document.getElementById('page-dashboard');
                 if (dashboardPage) {
                     dashboardPage.style.display = 'block';
                     headerTitle.textContent = page === 'donors' ? 'Donors Management' : 'Blood Requests';
-                    
+
                     // Scroll to the relevant section after a short delay
                     setTimeout(() => {
-                        const section = page === 'donors' 
+                        const section = page === 'donors'
                             ? document.getElementById('donorsContainer')?.closest('.data-section')
                             : document.getElementById('requestsContainer')?.closest('.data-section');
                         if (section) {
@@ -407,19 +471,19 @@
                 }
                 return;
             }
-            
+
             // Show selected page
             const pageElement = document.getElementById(`page-${page}`);
             if (pageElement) {
                 pageElement.style.display = 'block';
-                
+
                 // Update header title
                 const titles = {
                     'dashboard': 'Admin Dashboard',
                     'analytics': 'Analytics & Insights'
                 };
                 headerTitle.textContent = titles[page] || 'Admin Dashboard';
-                
+
                 // Load analytics if switching to analytics page
                 if (page === 'analytics') {
                     loadAnalytics();
@@ -430,7 +494,7 @@
         // Check admin access
         const adminSession = sessionStorage.getItem('adminLoggedIn');
         const adminEmail = sessionStorage.getItem('adminEmail');
-        
+
         if (adminSession === 'true' && adminEmail === 'admin@gmail.com') {
             loadData();
         } else {
@@ -465,7 +529,7 @@
                 updateStats(result.donors, result.requests);
                 displayDonors(result.donors);
                 displayRequests(result.requests);
-                
+
                 // Store data globally for analytics
                 window.adminData = {
                     donors: result.donors,
@@ -505,7 +569,7 @@
             });
             const bloodGroups = Object.keys(bloodGroupCounts).sort();
             const bloodGroupData = bloodGroups.map(bg => bloodGroupCounts[bg]);
-            
+
             charts.bloodGroup = new Chart(document.getElementById('bloodGroupChart'), {
                 type: 'pie',
                 data: {
@@ -534,7 +598,7 @@
             donors.forEach(donor => {
                 genderCounts[donor.gender] = (genderCounts[donor.gender] || 0) + 1;
             });
-            
+
             charts.gender = new Chart(document.getElementById('genderChart'), {
                 type: 'doughnut',
                 data: {
@@ -558,7 +622,7 @@
             // Availability Status (Bar Chart)
             const availableCount = donors.filter(d => d.availability === 'Yes').length;
             const unavailableCount = donors.filter(d => d.availability === 'No').length;
-            
+
             charts.availability = new Chart(document.getElementById('availabilityChart'), {
                 type: 'bar',
                 data: {
@@ -597,7 +661,7 @@
             });
             const sortedDates = Object.keys(donationsByDate).sort();
             const donationsData = sortedDates.map(date => donationsByDate[date]);
-            
+
             charts.donationsOverTime = new Chart(document.getElementById('donationsOverTimeChart'), {
                 type: 'line',
                 data: {
@@ -642,7 +706,7 @@
             });
             const sortedRequestDates = Object.keys(requestsByDate).sort();
             const requestsData = sortedRequestDates.map(date => requestsByDate[date]);
-            
+
             charts.requestsOverTime = new Chart(document.getElementById('requestsOverTimeChart'), {
                 type: 'line',
                 data: {
@@ -685,7 +749,7 @@
             });
             const requestBloodGroups = Object.keys(requestsByBloodGroup).sort();
             const requestBloodGroupData = requestBloodGroups.map(bg => requestsByBloodGroup[bg]);
-            
+
             charts.requestsByBloodGroup = new Chart(document.getElementById('requestsByBloodGroupChart'), {
                 type: 'bar',
                 data: {
@@ -720,7 +784,7 @@
             const sortedAllMonths = Array.from(allMonths).sort();
             const monthlyDonations = sortedAllMonths.map(month => donationsByDate[month] || 0);
             const monthlyRequests = sortedAllMonths.map(month => requestsByDate[month] || 0);
-            
+
             charts.monthlyTrends = new Chart(document.getElementById('monthlyTrendsChart'), {
                 type: 'bar',
                 data: {
@@ -855,10 +919,10 @@
                 const date = new Date(request.timestamp);
                 // Use fullName if available, otherwise use requesterName, fallback to email
                 const requesterDisplay = request.fullName || request.requesterName || request.userEmail || 'Unknown';
-                
+
                 // Check if request is completed
                 const isCompleted = request.status === 'completed';
-                
+
                 // Check if there's an available donor with matching blood group
                 // If a specific donor was requested, check if that donor is available
                 let hasAvailableDonor = false;
@@ -866,27 +930,27 @@
                     if (request.requestedDonorId) {
                         // Check if the specific requested donor is available
                         const requestedDonor = donors.find(d => d.id === request.requestedDonorId);
-                        hasAvailableDonor = requestedDonor && 
-                                          requestedDonor.bloodGroup === request.bloodGroup && 
-                                          requestedDonor.availability === 'Yes';
+                        hasAvailableDonor = requestedDonor &&
+                            requestedDonor.bloodGroup === request.bloodGroup &&
+                            requestedDonor.availability === 'Yes';
                     } else {
                         // Fallback: check if any donor with matching blood group is available
-                        hasAvailableDonor = donors.some(donor => 
+                        hasAvailableDonor = donors.some(donor =>
                             donor.bloodGroup === request.bloodGroup && donor.availability === 'Yes'
                         );
                     }
                 }
-                
+
                 // Status badge
-                const statusBadge = isCompleted 
+                const statusBadge = isCompleted
                     ? '<span class="badge" style="background-color: #10b981;">Completed</span>'
                     : '<span class="badge" style="background-color: #f59e0b;">Pending</span>';
-                
+
                 // Show requested donor name if available
-                const donorInfo = request.requestedDonorName 
+                const donorInfo = request.requestedDonorName
                     ? `<div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Donor: ${request.requestedDonorName}</div>`
                     : '';
-                
+
                 html += `
                     <tr>
                         <td><strong>${requesterDisplay}</strong></td>
@@ -929,7 +993,7 @@
 
         // Tab filtering
         document.querySelectorAll('.tab-button').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const section = this.closest('.data-section');
                 section.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
@@ -976,7 +1040,7 @@
             // Get request details to show donor name in confirmation
             const request = window.adminData?.requests?.find(r => r.id === requestId);
             const donorName = request?.requestedDonorName ? ` from ${request.requestedDonorName}` : '';
-            
+
             const confirmed = await showConfirm(
                 'Approve Request',
                 `Approve this blood request for ${bloodGroup}${donorName}? This will assign the requested donor and mark the request as completed.`
@@ -995,7 +1059,7 @@
         refreshBtn.addEventListener('click', () => {
             loadData();
             showSuccessToast('Data refreshed!');
-            
+
             // Refresh analytics if on analytics page
             const currentPage = document.querySelector('.page-content[style*="block"]') || document.querySelector('.page-content:not([style*="none"])');
             if (currentPage && currentPage.id === 'page-analytics') {
@@ -1017,7 +1081,7 @@
         if (topHeader) {
             window.addEventListener('scroll', () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
+
                 if (scrollTop > 50) {
                     topHeader.classList.add('scrolled');
                 } else {
@@ -1027,4 +1091,5 @@
         }
     </script>
 </body>
+
 </html>

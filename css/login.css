@@ -274,7 +274,7 @@
 .input:focus,
 input:valid {
     outline: none;
-    border: 1.5px solid var(--accent-red);
+    border: 1.5px solid blue;
 }
 
 .input:focus~label,
@@ -283,7 +283,7 @@ input:valid~label {
     background-color: var(--card-bg);
     /* Match card background */
     padding: 0 .2em;
-    color: var(--accent-red);
+    color: blue;
 }
 
 /* Adjust password toggle position for new input style */
